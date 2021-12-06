@@ -1,1 +1,1 @@
-{"data":{"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"testtest","categories":"smart contract"},"fields":{"slug":"/smart contract/test/"}}},{"node":{"frontmatter":{"title":"testtaaaaaest","categories":"smart contract"},"fields":{"slug":"/smart_contract/test/"}}}]}}}
+{"data":{"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"testtaaaaaest","categories":"smart_contract"},"fields":{"slug":"/smart_contract/test/"}}}]}}}
