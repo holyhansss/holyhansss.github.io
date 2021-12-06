@@ -2,7 +2,7 @@ module.exports = {
   title: `title`,
   description: `description`,
   language: `ko`, // `ko`, `en` => currently support versions for Korean and English
-  siteUrl: ``,
+  siteUrl: `https://holyhansss.github.io/`,
   ogImage: `/og-image.png`, // Path to your in the 'static' folder
   comments: {
     utterances: {
