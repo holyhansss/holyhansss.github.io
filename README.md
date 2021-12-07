@@ -7,9 +7,10 @@
 
 
 ## 👋 소개
-[**Zoomkoding**](https://www.zoomkoding.com/)님의 블로그를 보고 저도 블로그를 시작하게 되었습니다.
+[**Zoomkoding**](https://www.zoomkoding.com/)님의 블로그를 보고 영감을 받아 저도 블로그를 시작하게 되었습니다.
 좋은 테마를 제공해주심 Zoomkoding님에게 감사드리며 앞으로 제 이야기를 잘 담아보겠습니다 :)
 
+## 테마 Github
 
 ## ✨ 기능
 - 😛 미모지와 문자 애니메이션를 통한 자기 소개
