@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-category-template-js",
     "path": "/posts/smart_contract",
-    "result": {"pageContext":{"currentCategory":"smart_contract","categories":["All","smart_contract","featured"],"edges":[{"node":{"id":"cf284f12-47e2-5b68-b8bb-54832798c998","excerpt":"👋 TEST TEST입니다. 👋 TEST TEST입니다. 👋 TEST TEST입니다. 👋 TEST 👋 TEST 👋 TEST","fields":{"slug":"/smart_contract/test/"},"frontmatter":{"categories":"smart_contract featured","title":"testtaaaaaest","date":"March 22, 2021"}},"next":null,"previous":null}]}},
+    "result": {"pageContext":{"currentCategory":"smart_contract","categories":["All","featured","smart_contract"],"edges":[{"node":{"id":"cf284f12-47e2-5b68-b8bb-54832798c998","excerpt":"👋 블로그 시작 블로그를 시작한다. 👋 블로그 시작","fields":{"slug":"/smart_contract/test/"},"frontmatter":{"categories":"featured smart_contract","title":"블로그 시작!!","date":"December 07, 2021"}},"next":null,"previous":null}]}},
     "staticQueryHashes": ["1073350324","1956554647","2938748437"]}
