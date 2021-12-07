@@ -1,5 +1,5 @@
 module.exports = {
-  title: `https://holyhansss.github.io/`,
+  title: `holyhansss.github.io`,
   description: `description`,
   language: `ko`, // `ko`, `en` => currently support versions for Korean and English
   siteUrl: `https://holyhansss.github.io/`,
