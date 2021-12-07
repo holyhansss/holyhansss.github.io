@@ -1,22 +1,15 @@
 ---
 emoji: 🧢
-title: testtaaaaaest
-date: '2021-03-22 23:00:00'
+title: 블로그 시작!!
+date: '2021-12-07 15:58:00'
 author: 한성원
 tags: blog gatsby theme 개츠비 테마
-categories: smart_contract featured
+categories: featured smart_contract
 ---
 
 
-## 👋 TEST
-TEST입니다.
-
-## 👋 TEST
-TEST입니다.
-
-## 👋 TEST
-TEST입니다.
-
+## 👋 블로그 시작
+블로그를 시작한다.
 
 ```toc
 
