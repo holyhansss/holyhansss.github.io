@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: EVM(Ethereum Virtual Machine)? 그게 뭔데?
-date: '2021-12-10 01:10:00'
+date: '2021-12-13 02:26:00'
 author: 한성원
 tags: EVM Ethereum Virtual Machine EthereumVirtualMachine
 categories: ethereum
