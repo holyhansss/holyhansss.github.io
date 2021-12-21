@@ -45,7 +45,8 @@ contract OverflowUnderFlow {
     }
 }
 ```
-<span style="color:grey">출처: https://medium.com/loom-network-korean/%EC%8A%A4%EB%A7%88%ED%8A%B8-%EC%BB%A8%ED%8A%B8%EB%9E%99%ED%8A%B8%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%ED%98%B8%ED%95%A0-%EA%B2%83%EC%9D%B8%EA%B0%80-%EC%86%94%EB%A6%AC%EB%94%94%ED%8B%B0%EC%9D%98-6%EA%B0%80%EC%A7%80-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%8C%80%EB%B9%84%EC%B1%85-1%EB%B6%80-c21d4e37034a</span>  
+
+<span style="color:grey">출처: [https://medium.com/loom-network-korean/스마트-컨트랙트를-어떻게-보호할-것인가-솔리디티의-6가지-취약점-및-대비책-1부](https://medium.com/loom-network-korean/%EC%8A%A4%EB%A7%88%ED%8A%B8-%EC%BB%A8%ED%8A%B8%EB%9E%99%ED%8A%B8%EB%A5%BC-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%ED%98%B8%ED%95%A0-%EA%B2%83%EC%9D%B8%EA%B0%80-%EC%86%94%EB%A6%AC%EB%94%94%ED%8B%B0%EC%9D%98-6%EA%B0%80%EC%A7%80-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%8C%80%EB%B9%84%EC%B1%85-1%EB%B6%80-c21d4e37034a)</span>  
 
 위 코드는 0.8.0 이전 버전들에게는 위험한 코드이다. zero에서 underflow function을 실행기키면 -1로 바뀌는 것이 아닌 2<sup>256</sup>-1로 바뀌게 된다. 만약 이 코드가 erc20와 같은 토큰을 다루는 코드였다면 큰 손실을 입을수도 있다.
 Overflow도 마찬가지로 max(2<sup>256</sup>-1) + 1을 하면 2<sup>256</sup>이 아닌 0으로 바뀌게 된다.
@@ -53,7 +54,7 @@ Overflow도 마찬가지로 max(2<sup>256</sup>-1) + 1을 하면 2<sup>256</sup>
 - - -
 
 ## 어떻게 overflow와 underflow를 예방할 수 있을까?
-openzeppline의 SafeMath 같은 라이브러리를 사용하는 것이 가능 보편화되어있다.
+openzeppline의 SafeMath 같은 라이브러리를 사용하는 것이 가능 보편화되어있다. 
 
 - - -
 
