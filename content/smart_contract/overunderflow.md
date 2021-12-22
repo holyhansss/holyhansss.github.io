@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: {취약점 시리즈 2} Over & Under Flow?
+title: 취약점 시리즈 2] Over & Under Flow?
 date: '2021-12-21 18:31:00'
 author: 한성원
 tags: Overflow Underflow SafeMath openzeppline
