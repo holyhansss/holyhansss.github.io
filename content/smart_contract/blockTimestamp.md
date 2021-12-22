@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: '[취약점 시리즈 3]' block.timestamp
+title block.timestamp
 date: '2021-12-21 18:31:00'
 author: 한성원
 tags: block.timestamp 취약점 SmartContract
