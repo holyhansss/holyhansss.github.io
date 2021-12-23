@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: Reentrancy Attack (재진입 공격)?
+title: (취약점 시리즈 1) Reentrancy Attack (재진입 공격)?
 date: '2021-12-20 18:38:00'
 author: 한성원
 tags: EVM Reentrancy ReentrancyAttack
