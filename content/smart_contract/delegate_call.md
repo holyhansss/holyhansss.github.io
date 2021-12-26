@@ -77,12 +77,16 @@ contract Attack {
 __Hacker__ 가 Attack.attack를 call하게 되면 HackMe contract의 fallback function이 실행된다. Fallback function에는 lib를 쓰기 위한 Delegate Call이 존재한다. Attack.attack에서 "pwn()"을 보냈기 때문에 Lib contract의 pwn이 실행된다. 
 이때 delegate call로 call하였기 때문에 msg.sender은 Attack contract가 된다. 이렇게되면 Attack contract가 HackMe의 주인이 된다.
 
+- - -
+
 ## How to prevent?
 1. __library__ 키워드를 사용한다. 
     library 키워드를 사용함으로써 stateless하고 self destruct를 방지 할 수 있다.
 2. 가능하다면 stateless 라이브러리를 사용한다.
     위와 마찬가지로 stateless하다면 바꿀 state가 없기 때문에 더 안전해질 수 있다.
-    
+
+- - -
+
 ## 마무리
 나에게 Delegate call은 생각보다 개념이 어려웠다. Example code와 다른 example들을 통해 실습하면서 개념을 얻을 것 같다. 한편으로 이게 어려우면 다른건 어째하냐~~ 라는 생각이들지만 그때마다 실습하지 뭐!! 실습 짱!!
 
