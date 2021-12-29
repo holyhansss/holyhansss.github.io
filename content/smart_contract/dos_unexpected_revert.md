@@ -96,6 +96,13 @@ contract KingOfEther {
 ## 마무리
 취약점들에 대해서 공부하면서 나는 EVM에 대해서 알아가야 할 부분이 많다는 생각이 든다. ~~잘안다고 생각했는데ㅋㅋ~~ 갈 길이 멀다!! 꾸준히 공부하자:)
 
+- - -
+
+### Reference
+- https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert
+- https://solidity-by-example.org/hacks/denial-of-service/
+- https://consensys.github.io/smart-contract-best-practices/recommendations/#favor-pull-over-push-for-external-calls
+
 
 ```toc
 
