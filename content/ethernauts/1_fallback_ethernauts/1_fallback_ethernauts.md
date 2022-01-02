@@ -161,7 +161,11 @@ Submit instance를 누르고 조금 기다리면 block이 mine되고, 다음과 
 
 - - -
 ## 마무리
-얼마전에 공부했던 king of Ether(DOS with unexpected revert)가 생각난다. revert를 통해 하는 ownership을 가져오는건 아니었지만 비슷한 점이 많은 것 같았다. 고작 1단계를 완료한 것이지만 게임을 통해 배우니 더 재밌는 것 같다. 앞으로도 화이팅!
+얼마전에 공부했던 king of Ether(DOS with unexpected revert)가 생각난다. revert를 통해 하는 ownership을 가져오는건 아니었지만 비슷한 점이 많은 것 같았다. smart contract을 짤때 logic은 괜찮아보여도 우리가 생각하지 못한 허점이 있을 수 있다! 항상 조심하고 또 조심하자!
+나중에는 보안감사(auditing)도 배워 내의 smart contract를 audit 할 수 있었으면 좋겠다! ~~이거로 취업 해야지ㅎ~~
+
+고작 1단계를 완료한 것이지만 게임을 통해 배우니 더 재밌는 것 같다. 앞으로도 화이팅!
+
 - - -
 ## 기타 정보
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
