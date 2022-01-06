@@ -113,7 +113,7 @@ contract CoinFlipAttack {
   using SafeMath for uint256;
   uint256 public consecutiveWins;
   uint256 public lastHash;
-  // CoinFlip.flip()의 결과를 예측하기 위해 같은 FACTOR르 쓴다.
+  // CoinFlip.flip()의 결과를 예측하기 위해 같은 FACTOR를 쓴다.
   uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
   //CoinFlip contract의 address
   address coinFlipAddress;
