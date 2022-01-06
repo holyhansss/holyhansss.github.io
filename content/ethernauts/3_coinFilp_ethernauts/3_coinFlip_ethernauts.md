@@ -106,7 +106,7 @@ blockhash의 특징은 무엇일까? 우선 blockhash는 트랜잭션이 추가�
 나는 그래서 CoinFlipAttack contract를 새로 만들었다. 
 
 주석을 통해 CoinFlipAttack contract를 같이 분석 해보자!
-```soildity
+```solidity
 //아마 위해서 본 CoinFlip contract와 매우 비슷할 것이다.
 contract CoinFlipAttack {
 
