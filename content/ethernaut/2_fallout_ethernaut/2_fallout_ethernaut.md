@@ -1,9 +1,9 @@
 ---
 emoji: 🧢
-title: (Ethernauts 취약점 2) Fallout  
+title: (Ethernaut 취약점 2) Fallout  
 date: '2022-01-02 11:10:00'
 author: 한성원
-tags: ethernauts Fallout vulnerability
+tags: ethernaut Fallout vulnerability
 categories: 취약점분석
 ---
 

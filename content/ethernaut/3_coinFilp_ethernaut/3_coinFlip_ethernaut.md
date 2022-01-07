@@ -1,9 +1,9 @@
 ---
 emoji: 🧢
-title: (Ethernauts 취약점 3) CoinFlip  
+title: (Ethernaut 취약점 3) CoinFlip  
 date: '2022-01-06 02:32:00'
 author: 한성원
-tags: ethernauts CoinFlip vulnerability
+tags: ethernaut CoinFlip vulnerability
 categories: 취약점분석
 ---
 

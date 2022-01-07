@@ -1,9 +1,9 @@
 ---
 emoji: 🧢
-title: (Ethernauts 취약점 1) Fallback 
+title: (Ethernaut 취약점 1) Fallback 
 date: '2022-01-02 01:11:00'
 author: 한성원
-tags: ethernauts fallback vulnerability
+tags: ethernaut fallback vulnerability
 categories: 취약점분석
 ---
 
