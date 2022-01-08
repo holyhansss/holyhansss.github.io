@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 5) Token  
-date: '2022-01-07 20:26:00'
+date: '2022-01-08 22:23:00'
 author: 한성원
 tags: ethernaut Token vulnerability
 categories: 취약점분석
