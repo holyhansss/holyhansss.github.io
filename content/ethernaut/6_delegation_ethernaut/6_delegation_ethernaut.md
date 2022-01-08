@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: (Ethernaut 취약점 6) Delegation  
+title: (Ethernaut 취약점 6) Delegation
 date: '2022-01-09 00:43:00'
 author: 한성원
 tags: ethernaut Token vulnerability
