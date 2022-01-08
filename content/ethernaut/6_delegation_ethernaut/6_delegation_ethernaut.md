@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 6) Delegation  
-date: '2022-01-07 20:26:00'
+date: '2022-01-09 00:43:00'
 author: 한성원
 tags: ethernaut Token vulnerability
 categories: 취약점분석
@@ -117,6 +117,7 @@ await contract.owner()
 ٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!
 ```
 - - -
+
 ## 마무리
 delegatecall 은 low level function이라 아직 내가 완벽하게 이해했다고 말할 수는 없을 것 같다. ethernaut을 다 풀어본 후에 EVM에 대해 좀 더 깊히 배워야겠다는 생각이 든다. 왜냐면 나는 그냥 smart contract 개발자가 아닌 auditor가 되고싶기 때문이다!!!! 앞으로도 화이팅하자!
 
