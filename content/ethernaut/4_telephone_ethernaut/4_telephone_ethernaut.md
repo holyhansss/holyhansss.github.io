@@ -8,7 +8,7 @@ categories: 취약점분석
 ---
 
 
-# 👋 1. CoinFlip
+# 👋 1. Telephone
 __Difficulty 1/10__
 
 - 승리 조건
