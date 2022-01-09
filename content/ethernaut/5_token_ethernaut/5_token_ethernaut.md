@@ -67,7 +67,7 @@ contract Token {
 remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 찾아보자!
 그리고 docs를 읽어본다면 사용법을 쉽게 익힐 수 있을 것이다.
 
-한 가지 주의할 점은 CoinFlip은 remix에서 바로 deploy하는 것이 아니라 ethernauts에서 만든 instance의 주소를 가지고 addressAt을 누르면 된다.
+한 가지 주의할 점은 Token은 remix에서 바로 deploy하는 것이 아니라 ethernauts에서 만든 instance의 주소를 가지고 addressAt을 누르면 된다.
 또한 우리는 Rinkeby Network를 사용하고 있으니 ENVIRONMENT를 "Injected Web3"를 선택해주어야 한다.
 
 
