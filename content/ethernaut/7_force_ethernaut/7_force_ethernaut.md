@@ -54,7 +54,7 @@ remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 �
 
 하지만 contract에 강제로 보낼 수 있는 방법이 존재한다!
 
-바로 [selfdestruct](addlinkhere)이다. 
+바로 [selfdestruct](https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/)이다. <= Click selfdestruct 
 
 selfdestruct의 개념을 안다면 이 문제는 매우 쉽게 풀릴 수 있다.
 
@@ -92,7 +92,7 @@ selfdestruct는 항상 조심해야한다. attacker를 통해 공격을 받는 �
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
-- DelegateCall 취약점: 
+- selfdestruct 취약점: https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/
 
 ```toc
 
