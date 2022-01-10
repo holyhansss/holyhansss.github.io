@@ -3,7 +3,7 @@ emoji: 🧢
 title: (Ethernaut 취약점 8) Vault
 date: '2022-01-10 19:18:00'
 author: 한성원
-tags: ethernaut Force vulnerability
+tags: ethernaut Vault vulnerability
 categories: 취약점분석
 ---
 
