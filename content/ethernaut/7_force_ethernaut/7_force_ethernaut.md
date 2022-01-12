@@ -64,7 +64,6 @@ selfdestruct의 개념을 안다면 이 문제는 매우 쉽게 풀릴 수 있�
 3. Force contract는 강제로 Ether를 받게된다.
 
 주석을 통해 ForceAttack contract를 같이 분석 해보자!
-최대한 간단하게 만들어보았다.
 ```solidity
 contract AttackForce {
     // payable을 사용해 Ether를 받을 수 있게 한다.
