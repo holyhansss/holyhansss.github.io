@@ -115,8 +115,7 @@ remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 �
 <li>Deploy한 contract에서 selfdestruct를 실행시킨다. selfdestruct의 parameter는 Force contract의 주소이다.</li>
 <li>Force contract는 강제로 Ether를 받게된다.</li>
 </ol>
-<p>주석을 통해 ForceAttack contract를 같이 분석 해보자!
-최대한 간단하게 만들어보았다.</p>
+<p>주석을 통해 ForceAttack contract를 같이 분석 해보자!</p>
 <div class="gatsby-highlight" data-language="solidity"><pre class="language-solidity"><code class="language-solidity"><span class="token keyword">contract</span> <span class="token class-name">AttackForce</span> <span class="token punctuation">{</span>
     <span class="token comment">// payable을 사용해 Ether를 받을 수 있게 한다.</span>
     <span class="token keyword">constructor</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">payable</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
