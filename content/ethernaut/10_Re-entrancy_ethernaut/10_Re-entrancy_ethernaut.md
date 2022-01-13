@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: (Ethernaut 취약점 10) Re-entrancy (Writing)
+title: (Ethernaut 취약점 10) Re-entrancy
 date: '2022-01-13 16:20:00'
 author: 한성원
 tags: ethernaut Re-entrancy vulnerability
