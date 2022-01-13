@@ -4,7 +4,7 @@ title: 블로그를 시작한 이유?
 date: '2021-12-07 16:55:00'
 author: 한성원
 tags: blog gatsby theme 개츠비 테마
-categories: feature
+categories: ~feature~
 ---
 
 
