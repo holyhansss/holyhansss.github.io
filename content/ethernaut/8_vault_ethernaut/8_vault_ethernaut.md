@@ -56,7 +56,7 @@ contract Vault {
 ## 풀이
 이 문제에서 우리의 목표는 vault를 unlock하는 것이다.
 
-위에 코드에서 보다싶이 우리는 올바른 비밀 번호를 가지고 unlock()을 실행시키면 vault를 unlock 할 수 있다는 것을 알 수 있다. 여기서 유심히 봐야할 점은 password가 smart contract에 저장되어 있다는 점이다. 블록체인 특성상 private으로 정의되었어도 외부에서 정보를 확인할 수 있다.
+위에 코드에서 보다싶이 우리는 올바른 비밀 번호를 가지고 unlock()을 실행시키면 vault를 unlock 할 수 있다는 것을 알 수 있다. 여기서 유심히 봐야할 점은 password가 smart contract에 저장되어 있다는 점이다. 블록체인 특성상 private으로 정의되었어도 외부에서 정보를 확인할 수 있다. [Privacy 관련 취약점](https://holyhansss.github.io/vulnerability/private_variable/private_variable/)을 확인해 보자!
 
 모든 코드는 console창에서 이루어진다. 
 ctrl + shift + i를 눌러 console창을 활성화 시키자
@@ -89,7 +89,7 @@ Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
-- selfdestruct 취약점: https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/
+- Privacy 취약점: https://holyhansss.github.io/vulnerability/private_variable/private_variable/
 
 ```toc
 
