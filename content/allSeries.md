@@ -37,6 +37,7 @@ categories: ~feature~
 - [Ethernaut 8. Vault](https://holyhansss.github.io/ethernaut/8_vault_ethernaut/8_vault_ethernaut/)
 - [Ethernaut 9. King](https://holyhansss.github.io/ethernaut/9_king_ethernaut/9_king_ethernaut/)
 - [Ethernaut 10. Re-entrancy](https://holyhansss.github.io/ethernaut/10_Re-entrancy_ethernaut/10_Re-entrancy_ethernaut/)
+- [Ethernaut 12. Privacy](https://holyhansss.github.io/ethernaut/12_privacy_ethernaut/12_privacy_ethernaut/)
 
 
 ```toc
