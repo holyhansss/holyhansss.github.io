@@ -1,15 +1,15 @@
 ---
 emoji: 🧢
-title: (Ethernaut 취약점 10) Re-entrancy
-date: '2022-01-13 16:20:00'
+title: (Ethernaut 취약점 12) Privacy
+date: '2022-01-14 16:24:00'
 author: 한성원
-tags: ethernaut Re-entrancy vulnerability
+tags: ethernaut Privacy vulnerability
 categories: 취약점분석
 ---
 
 
-# 👋 Re-entrancy
-__Difficulty 6/10__
+# 👋 Privacy
+__Difficulty 8/10__
 
 - 승리 조건
 - 코드 분석
