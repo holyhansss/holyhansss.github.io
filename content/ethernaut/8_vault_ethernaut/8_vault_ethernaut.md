@@ -8,7 +8,7 @@ categories: 취약점분석
 ---
 
 
-# 👋 Force
+# 👋 Vault
 __Difficulty 3/10__
 
 - 승리 조건

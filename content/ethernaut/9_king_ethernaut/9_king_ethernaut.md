@@ -8,7 +8,7 @@ categories: 취약점분석
 ---
 
 
-# 👋 Force
+# 👋 King
 __Difficulty 6/10__
 
 - 승리 조건
