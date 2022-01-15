@@ -115,7 +115,7 @@ Elevator contract의 goTo() if문에서는 build.isLastFloor()이 false여야한
 - - -
 
 ## 마무리
-다 풀고 생각해보니 내가 interface에 대한 이해가 부족하다는 생각이 든다. ethernaut 덕분에 나의 부족한 점을 하나하나 채워나갈 수 있는 것 같다ㅎㅎ. 지금 생각해보면 openzppline의 ERC token들의 interface들도 잘 이해하지 못했던 것 같다. 한번 ERC token들의 interface도 읽어보며 좀 더 완벽한 이해를 해보자! 이제 거의 절반을 끝냈다. 화이팅 @~@
+다 풀고 생각해보니 내가 interface에 대한 이해가 부족하다는 생각이 든다. ethernaut 덕분에 나의 부족한 점을 하나하나 채워나갈 수 있는 것 같다ㅎㅎ. 지금 생각해보면 openzppline의 ERC token들의 interface들도 잘 이해하지 못했던 것 같다. 한번 ERC token들의 interface도 읽어보며 좀 더 완벽한 이해를 해보자! 또한 view와 pure에 대한 중요성에 대해 깨닫을 수 있던 문제였던것 같다. 이제 거의 절반을 끝냈다. 화이팅 @~@
 
 - - -
 ## 기타 정보
