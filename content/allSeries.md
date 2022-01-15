@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: 시리즈 별 정리(모든 글이 다 여기 정리되어 있어요!) 
-date: '2022-01-14 11:37:00'
+date: '2099-01-01 11:37:00'
 author: 한성원
 tags: blog series 
 categories: ~feature~
@@ -12,6 +12,8 @@ categories: ~feature~
 시리즈 별로 보기 편하게 정리해두었다!
 
 ## 취약점 시리즈
+취약점 시리즈는 알려진 smart contract의 취약점에 대해 다룬다.
+
 - [취약점 시리즈 1 Reentrancy Attack 재진입 공격](https://holyhansss.github.io/vulnerability/reentrancy_attack/reentrancy_attack/)
 - [취약점 시리즈 2 Overflow & Underflow](https://holyhansss.github.io/vulnerability/over_under_flow/over_under_flow/)
 - [취약점 시리즈 3 block.timestamp](https://holyhansss.github.io/vulnerability/block_timestamp/block_timestamp/)
@@ -27,6 +29,8 @@ categories: ~feature~
 
 
 ## Ethernaut 시리즈
+Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 적는다. 풀이 뿐만 아니라 Ethernaut에서 알려주려하는 취약점들에 대해서도 관련한 설명들을 담았다.
+
 - [Ethernaut 1. Fallback](https://holyhansss.github.io/ethernaut/1_fallback_ethernaut/1_fallback_ethernaut/) 
 - [Ethernaut 2. Fallout](https://holyhansss.github.io/ethernaut/2_fallout_ethernaut/2_fallout_ethernaut/)
 - [Ethernaut 3. CoinFlip](https://holyhansss.github.io/ethernaut/3_coinFilp_ethernaut/3_coinFlip_ethernaut/)
