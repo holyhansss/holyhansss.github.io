@@ -75,16 +75,16 @@ contract Privacy {
 에 대해서 확실하게 알아야 한다.
 Vault에서도 설명했지만 한번 더 storage에 대해서 설명하겠다. 
 EVM의 Storage는 2^256개의 메모리 슬롯을 가지고 있다. 그리고 각 slot은 32 bytes( = 256 bits)의 크기이다. 하나의 slot에 여러가지 변수를 저정할 수 있다. 하지만 변수 선언 순서에 따라 slot 할당이 달라지니 유의하자! 아래의 예시처럼 uint8, uint256, uint8은 3개를 차지하지만 uint8, uint8, uint256은 슬롯 2개 밖에 차지하지 않는다.  Gas optimization을 위해서는 우리가 꼭 알고 있어야할 내용이다!
-    ```solidity
-    uint8 a // slot 0
-    uint256 b // slot 1
-    uint8 c // slot 2
-    ```
-    ```solidity
-    uint8 a // slot 0
-    uint8 b // slot 0
-    uint256 c // slot 1
-    ```
+```solidity
+uint8 a // slot 0
+uint256 b // slot 1
+uint8 c // slot 2
+```
+```solidity
+uint8 a // slot 0
+uint8 b // slot 0
+uint256 c // slot 1
+```
 [이 글](https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183)에 설명이 잘 되어있으니 한번 확인해 보자! 이 글에서는 casting에 대해서도 다루고 있으니 꼭 보고 오는 것을 추천한다.
 
 우리는 이 문제를 풀기 위해 web3.eth.getStorageAt() method를 사용한다. web3.eth.getStorageAt를 통해 우리는 lowlevel에서 storage data를 불러올 수 있다.
