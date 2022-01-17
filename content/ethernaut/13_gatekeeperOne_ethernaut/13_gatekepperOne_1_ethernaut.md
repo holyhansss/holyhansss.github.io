@@ -67,7 +67,7 @@ contract GatekeeperOne {
 
 
 ## 풀이
-이 문제에서 우리의 목표는 3개의 gate를 무사히 지나 entrant로 등록하는 것이다. 우선 gate1은 이전에 풀었던 Telephone과 유사했다. 아래의 조건은 우리가 가지고 그냥 내가 직접 transaction을 보내지 않고 다른 contract를 만들어 사용하면 된다. gate1은 쉽게 풀렸다.
+이 문제에서 우리의 목표는 3개의 gate를 무사히 지나 entrant로 등록하는 것이다. 우선 gate1은 이전에 풀었던 [Telephone](https://holyhansss.github.io/ethernaut/4_telephone_ethernaut/4_telephone_ethernaut/)과 유사했다. 아래의 조건은 우리가 가지고 그냥 내가 직접 transaction을 보내지 않고 다른 contract를 만들어 사용하면 된다. gate1은 쉽게 풀렸다.
 
 ```solidity
 require(tx.origin != msg.sender)
@@ -117,7 +117,18 @@ contract GatekeeperOneAttack {
 ```
 <br/>
 
-나는 gate2를 풀때 require문에서 계산되는 시기에 남은 gas의 값을 정확하게 얻어내는 방식으로 진행했다. 여기에서는 remix의 dubugger를 통해 opcode와 그에 대한 정보를 사용했다. 우선 내가 만든 contract는 이랬다.
+나는 gate2를 풀때 require문에서 계산되는 시기에 남은 gas의 값을 정확하게 얻어내는 방식으로 진행했다. 여기에서는 remix의 dubugger를 통해 opcode와 그에 대한 정보를 사용했다. 우선 내가 만든 contract는 이랬다. 나는 [이 글](https://medium.com/coinmonks/ethernaut-lvl-13-gatekeeper-1-walkthrough-how-to-calculate-smart-contract-gas-consumption-and-eb4b042d3009)에서 방법을 배워 적용했다!   
+
+<br/>
+새로운 contract를 만들어 GatekeeperOne.enter()를 call 했다면 gate 1은 성공한 것이다. 그리고 콘솔창을 보면 아래와 같은 transaction 실패표시가 뜰 것이다. 그리고 저 부분을 클릭하고 transaction hash를 찾아 remix debugger에 넣으면 된다.
+
+![gate2_transaction_fail](./gate2_transaction_fail.png)
+<br/>
+
+이후 debugger를 돌리다보면 아래와 같이 "gasleft().mod" 가 하이라이트 될 때가 있다. 그때 Opcode는 PUSH에 있을 것이고 Step details를 보면 remaining gas를 확인 할 수 있다. 이를 역계산해서 필요한gas만큼 8191의 배수에 더해 transaction을 보내면 된다. 
+![debuge_gate2](./debug_gateTwo.png)
+
+아래는 내가 해결할때 사용한  코드이다!
 
 ```solidity
 contract GetEntrant {
@@ -135,23 +146,9 @@ contract GetEntrant {
   
 }
 ```
+<br/>
+너무 길어져서 다음 글에 type conversion 설명과 gate3에 대한 설명을 쓰도록 하겠다:)
 
-
-
-
-
-
-https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183
-
-이후 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.
-```
-٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!
-```
-
-- - -
-
-## 마무리
-블록체인상의 정보는 모두에게 공개된다. 모든 사람이 storage를 쉽게 확인 할 수 있기 때문이다. 민감한 정보들은 블록체인에 올리지 않는 것이 좋다. 또한 변수 선언 순서에 따라 때로는 더 많은 비용를 지불해야 할 수도 있기 때문에 코드를 적을때 항상 최적화에 대해 생각하며 하자!! 
 
 
 - - -
@@ -159,9 +156,7 @@ https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-acc
 - rinkeyb network ether faucet: https://faucets.chain.link/rinkeby
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
-- Ethernaut 8 Vault: https://holyhansss.github.io/ethernaut/8_vault_ethernaut/8_vault_ethernaut/
 - Storage & Casting: https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183
-- Privacy 취약점: https://holyhansss.github.io/vulnerability/private_variable/private_variable/
-```toc
+
 
 ```
