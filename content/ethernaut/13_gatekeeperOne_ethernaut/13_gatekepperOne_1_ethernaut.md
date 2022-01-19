@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: (Ethernaut 취약점 13) Gatekeeper One 
+title: (Ethernaut 취약점 13) Gatekeeper One - 1 
 date: '2022-01-17 11:53:00'
 author: 한성원
 tags: ethernaut GatekeeperOne vulnerability
