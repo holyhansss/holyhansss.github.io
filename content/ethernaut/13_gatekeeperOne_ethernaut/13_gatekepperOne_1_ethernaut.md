@@ -158,5 +158,6 @@ contract GetEntrant {
 - remix IDE: https://remix.ethereum.org
 - Storage & Casting: https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183
 
+```toc
 
 ```

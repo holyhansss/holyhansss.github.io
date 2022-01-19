@@ -154,6 +154,8 @@ gatekeeperOne을 통해 좀 더 깊은 곧을 들여다볼 수 있었다. 평소
 - ethernaut: https://ethernaut.openzeppelin.com/
 - remix IDE: https://remix.ethereum.org
 - Storage & Casting: https://medium.com/coinmonks/solidity-variables-storage-type-conversions-and-accessing-private-variables-c59b4484c183
+- Type Conversion: https://www.tutorialspoint.com/solidity/solidity_conversions.htm
 
+```toc
 
 ```

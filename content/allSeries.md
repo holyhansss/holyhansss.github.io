@@ -43,7 +43,8 @@ Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 
 - [Ethernaut 10. Re-entrancy](https://holyhansss.github.io/ethernaut/10_Re-entrancy_ethernaut/10_Re-entrancy_ethernaut/)
 - [Ethernaut 11. Elevator](https://holyhansss.github.io/ethernaut/11_elevator_ethernaut/11_elevator_ethernaut/)
 - [Ethernaut 12. Privacy](https://holyhansss.github.io/ethernaut/12_privacy_ethernaut/12_privacy_ethernaut/)
-
+- [Ethernaut 13. GateKeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_1_ethernaut/)
+- [Ethernaut 13. GateKeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
 
 ```toc
 
