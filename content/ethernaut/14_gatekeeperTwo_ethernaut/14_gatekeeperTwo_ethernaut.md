@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: (Ethernaut 취약점 15) GatekeeperTwo
+title: (Ethernaut 취약점 14) GatekeeperTwo
 date: '2022-01-21 10:57:00'
 author: 한성원
 tags: ethernaut GatekeeperTwo vulnerability
