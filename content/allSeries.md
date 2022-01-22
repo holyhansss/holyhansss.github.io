@@ -29,7 +29,7 @@ categories: ~feature~
 
 
 ## Ethernaut 시리즈
-Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 적는다. 풀이 뿐만 아니라 Ethernaut에서 알려주려하는 취약점들에 대해서도 관련한 설명들을 담았다.
+Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 적는다. 풀이를 적는 이유는 내가 완벽하게 이해하고 있어야 남들에게 설명해줄 수 있다고 생각하기 때문이다. Ethernaut를 풀기 시작한 여러분도 푸는 것에만 집중하는게 아니라 하나하나 뜯어보면서 배우길 바란다 :) 
 
 - [Ethernaut 1. Fallback](https://holyhansss.github.io/ethernaut/1_fallback_ethernaut/1_fallback_ethernaut/) 
 - [Ethernaut 2. Fallout](https://holyhansss.github.io/ethernaut/2_fallout_ethernaut/2_fallout_ethernaut/)
