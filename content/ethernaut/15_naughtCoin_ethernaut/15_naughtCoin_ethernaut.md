@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 15) Naught Coin
-date: '2022-01-21 10:57:00'
+date: '2022-01-22 20:04:00'
 author: 한성원
 tags: ethernaut NaughtCoin Naught Coin vulnerability 
 categories: 취약점분석
