@@ -27,7 +27,6 @@ categories: ~feature~
 
 
 
-
 ## Ethernaut 시리즈
 Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 적는다. 풀이를 적는 이유는 내가 완벽하게 이해하고 있어야 남들에게 설명해줄 수 있다고 생각하기 때문이다. Ethernaut를 풀기 시작한 여러분도 푸는 것에만 집중하는게 아니라 하나하나 뜯어보면서 배우길 바란다 :) 
 
@@ -43,8 +42,10 @@ Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 
 - [Ethernaut 10. Re-entrancy](https://holyhansss.github.io/ethernaut/10_Re-entrancy_ethernaut/10_Re-entrancy_ethernaut/)
 - [Ethernaut 11. Elevator](https://holyhansss.github.io/ethernaut/11_elevator_ethernaut/11_elevator_ethernaut/)
 - [Ethernaut 12. Privacy](https://holyhansss.github.io/ethernaut/12_privacy_ethernaut/12_privacy_ethernaut/)
-- [Ethernaut 13. GateKeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_1_ethernaut/)
-- [Ethernaut 13. GateKeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
+- [Ethernaut 13. GatekeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_1_ethernaut/)
+- [Ethernaut 13. GatekeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
+- [Ethernaut 14. GatekeeperTwo](hthttps://holyhansss.github.io/ethernaut/14_gatekeeperTwo_ethernaut/14_gatekeeperTwo_ethernaut/)
+- [Ethernaut 15. Naught Coin](https://holyhansss.github.io/ethernaut/15_naughtCoin_ethernaut/15_naughtCoin_ethernaut/)
 
 ```toc
 
