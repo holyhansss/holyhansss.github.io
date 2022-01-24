@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
-title: Bored Ape Yacht Club - Contract Review
-date: '2021-12-13 02:26:00'
+title: Bored Ape Yacht Club - Contract Review (Writing)
+date: '2022-01-24 15:15:00'
 author: 한성원
 tags: Ethereum ERC721 NFT BoredApeYachtClub 
 categories: ethereum
@@ -9,10 +9,6 @@ categories: ethereum
 
 
 # 👋 Bored Ape Yacht Club - Contract Review
-
-## 1. Virtual Machine?
-
-## 2. EVM(Ethereum Virtual Machine)
 
 ```solidity
 contract BoredApeYachtClub is ERC721, Ownable {
