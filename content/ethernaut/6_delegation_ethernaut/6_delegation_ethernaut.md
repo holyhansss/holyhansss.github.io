@@ -88,7 +88,7 @@ Fallback 함수는 contract에서 함수를 실행시킬때 함수가 존재하�
 
 ### method id
 This is derived as the first 4 bytes of the Keccak hash of the ASCII form of the signature
-즉 4 byte의 Keccak hash라고 생각하면 된다.
+즉 함수 결과값의 앞에서부터 4 bytes의 Keccak hash라고 생각하면 된다.
 
 우리가 owner를 가져오기 위한 시나리오는 이렇다.
 1. pwn()를 4 byte의 keccak hash로 하나의 변수에 저장한다.
