@@ -4,7 +4,7 @@ title: EVM과 Transaction
 date: '2021-12-13 02:26:00'
 author: 한성원
 tags: EVM Ethereum Virtual Machine EthereumVirtualMachine
-categories: ethereum
+categories: EVM
 ---
 
 
