@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: 시리즈 별 정리(모든 글이 다 여기 정리되어 있어요!) 
-date: '2099-01-01 11:37:00'
+date: '2099-01-01 11:11:11'
 author: 한성원
 tags: blog series 
 categories: ~feature~
@@ -10,6 +10,11 @@ categories: ~feature~
 
 # 👋 시리즈 별 정리
 시리즈 별로 보기 편하게 정리해두었다!
+
+## EVM
+- [EVM과 Transaction](https://holyhansss.github.io/EVM/evm/)
+- [Solidity Bytecode and Opcode Basics](https://holyhansss.github.io/EVM/SolidityBytecodeandOpcodeBasics/)
+
 
 ## 취약점 시리즈
 취약점 시리즈는 알려진 smart contract의 취약점에 대해 다룬다.
@@ -46,6 +51,9 @@ Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 
 - [Ethernaut 13. GatekeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
 - [Ethernaut 14. GatekeeperTwo](hthttps://holyhansss.github.io/ethernaut/14_gatekeeperTwo_ethernaut/14_gatekeeperTwo_ethernaut/)
 - [Ethernaut 15. Naught Coin](https://holyhansss.github.io/ethernaut/15_naughtCoin_ethernaut/15_naughtCoin_ethernaut/)
+- [Ethernaut 16. Preservation](https://holyhansss.github.io/ethernaut/16_preservation_ethernaut/16_preservation_ethernaut/)
+- [Ethernaut 17. Recovery](https://holyhansss.github.io/ethernaut/17_recovery_ethernaut/17_recovery_ethernaut/)
+
 
 ```toc
 
