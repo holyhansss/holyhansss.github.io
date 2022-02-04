@@ -48,7 +48,7 @@ Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 
 - [Ethernaut 11. Elevator](https://holyhansss.github.io/ethernaut/11_elevator_ethernaut/11_elevator_ethernaut/)
 - [Ethernaut 12. Privacy](https://holyhansss.github.io/ethernaut/12_privacy_ethernaut/12_privacy_ethernaut/)
 - [Ethernaut 13. GatekeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_1_ethernaut/)
-- [Ethernaut 13. GatekeeperOne - 1](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
+- [Ethernaut 13. GatekeeperOne - 2](https://holyhansss.github.io/ethernaut/13_gatekeeperOne_ethernaut/13_gatekepperOne_2_ethernaut/)
 - [Ethernaut 14. GatekeeperTwo](https://holyhansss.github.io/ethernaut/14_gatekeeperTwo_ethernaut/14_gatekeeperTwo_ethernaut/)
 - [Ethernaut 15. Naught Coin](https://holyhansss.github.io/ethernaut/15_naughtCoin_ethernaut/15_naughtCoin_ethernaut/)
 - [Ethernaut 16. Preservation](https://holyhansss.github.io/ethernaut/16_preservation_ethernaut/16_preservation_ethernaut/)
