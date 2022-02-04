@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 18) MagicNumber
-date: '2022-01-31 17:44:00'
+date: '2022-02-04 10:43:00'
 author: 한성원
 tags: ethernaut MagicNumber vulnerability 
 categories: 취약점분석
