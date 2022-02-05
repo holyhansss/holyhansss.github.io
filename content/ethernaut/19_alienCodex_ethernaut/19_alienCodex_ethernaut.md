@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 19) Alien Codex
-date: '2022-01-25 14:32:00'
+date: '2022-02-05 18:15:00'
 author: 한성원
 tags: ethernaut AlienCodex vulnerability 
 categories: 취약점분석
