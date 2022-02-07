@@ -54,7 +54,9 @@ Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 
 - [Ethernaut 16. Preservation](https://holyhansss.github.io/ethernaut/16_preservation_ethernaut/16_preservation_ethernaut/)
 - [Ethernaut 17. Recovery](https://holyhansss.github.io/ethernaut/17_recovery_ethernaut/17_recovery_ethernaut/)
 - [Ethernaut 18. MagicNumber](https://holyhansss.github.io/ethernaut/18_magicNumber_ethernaut/18_magicNumber_ethernaut/)
-
+- [Ethernaut 19. Alien Codex](https://holyhansss.github.io/ethernaut/19_alienCodex_ethernaut/19_alienCodex_ethernaut/)
+- [Ethernaut 20. Denial](https://holyhansss.github.io/ethernaut/20_denial_ethernaut/20_denial_ethernaut/)
+- [Ethernaut 21. Shop](https://holyhansss.github.io/ethernaut/21_shop_ethernaut/21_shop_ethernaut/)
 
 ```toc
 
