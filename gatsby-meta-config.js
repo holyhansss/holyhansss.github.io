@@ -71,18 +71,18 @@ module.exports = {
       },
       // ========================================================
       // ========================================================
-      {
-        title: '개발 블로그 테마 개발',
-        description:
-          '한동대학교 ICT 창업학부의 Projects관련',
-        techStack: ['react','firebase'],
-        thumbnailUrl: 'blog.png',
-        links: {
-          post: '/',
-          github: 'https://github.com/holyhansss',
-          demo: 'https://github.com/holyhansss',
-        },
-      },
+      // {
+      //   title: '개발 블로그 테마 개발',
+      //   description:
+      //     '한동대학교 ICT 창업학부의 Projects관련',
+      //   techStack: ['react','firebase'],
+      //   thumbnailUrl: 'blog.png',
+      //   links: {
+      //     post: '/',
+      //     github: 'https://github.com/holyhansss',
+      //     demo: 'https://github.com/holyhansss',
+      //   },
+      // },
     ],
   },
 };
