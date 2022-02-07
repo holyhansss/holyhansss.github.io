@@ -80,18 +80,19 @@ contract Denial {
 이 문제는 call과 transfer의 차이를 잘 알아야 풀 수 있는 문제이다.
 
 #### transfer
-수신 스마트 계약에는 fallback 함수가 정의되어 있어야 한다. 그렇지 않으면 전송 호출에 오류가 발생한다. `transfer`은 가스 제한량은 2300으로 `transfer`을 완료하기에 한 양이다.
+- 수신 스마트 계약에는 fallback 함수가 정의되어 있어야 한다. 그렇지 않으면 전송 호출에 오류가 발생한다. `transfer`은 가스 제한량은 2300으로 `transfer`을 완료하기에 한 양이다.
 
 #### send
-`transfer`과 유사한 방식으로 작동하며 가스 제한도 2300이다. 하지만 `transfer`과 다르게 status를 `bool` 값으로 반환한다.
+- `transfer`과 유사한 방식으로 작동하며 가스 제한도 2300이다. 하지만 `transfer`과 다르게 status를 `bool` 값으로 반환한다.
 
 #### call
-smart contract에 ETH를 보내는 권장되는 방법이다. call의 빈 인수는 수신 주소의 fallback 함수를 실행시킨다.
+- smart contract에 ETH를 보내는 권장되는 방법이다. call의 빈 인수는 수신 주소의 fallback 함수를 실행시킨다.
 
-```solidity
-(bool sent,memory data) = _to.call{value: msg.value}("");
-```
-`call`을 사용하여 contract에 정의된 다른 기능을 실행시키고 함수를 실행하기 위해 고정된 양의 가스를 보낼 수도 있다. 트랜잭션의 상태가 `bool`값으로 전송되고 return 값이 데이터 변수로 전송된다. 고정된 양의 gas를 보내지 않는다면 사용가능한 모든 gas를 보낸다.
+ 
+    ```solidity
+    (bool sent,memory data) = _to.call{value: msg.value}("");
+    ```
+    `call`을 사용하여 contract에 정의된 다른 기능을 실행시키고 함수를 실행하기 위해 고정된 양의 가스를 보낼 수도 있다. 트랜잭션의 상태가 `bool`값으로 전송되고 return 값이 데이터 변수로 전송된다. 고정된 양의 gas를 보내지 않는다면 사용가능한 모든 gas를 보낸다.
 
 <br/>
 
