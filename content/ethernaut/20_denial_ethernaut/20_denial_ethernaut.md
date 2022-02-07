@@ -9,7 +9,7 @@ categories: 취약점분석
 
 
 # 👋 1. Denial
-__Difficulty 7/10__
+__Difficulty 5/10__
 
 - 승리 조건
 - 코드 분석
