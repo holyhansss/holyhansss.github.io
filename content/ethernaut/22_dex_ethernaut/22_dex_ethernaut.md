@@ -1,7 +1,7 @@
 ---
 emoji: 🧢
 title: (Ethernaut 취약점 22) Dex
-date: '2022-02-07 13:43:00'
+date: '2022-02-10 11:17:00'
 author: 한성원
 tags: ethernaut Dex vulnerability 22
 categories: 취약점분석
