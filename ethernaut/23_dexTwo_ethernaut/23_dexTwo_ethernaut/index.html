@@ -64,16 +64,14 @@
         }
       }
     })
-  </script><title data-react-helmet="true">(Ethernaut 취약점 22) Dex</title><meta data-react-helmet="true" name="viewport" content="initial-scale=1, width=device-width"/><meta data-react-helmet="true" property="og:title" content="(Ethernaut 취약점 22) Dex"/><meta data-react-helmet="true" property="og:site_title" content="(Ethernaut 취약점 22) Dex"/><meta data-react-helmet="true" name="description" content="👋 1. Dex Difficulty 3/10 승리 조건 코드 분석 풀이 순서로 진행 될 것이다. 승리 조건 Dex Contract 해킹 후 토큰 중 하나를 모두 소진(0으로 만들기)하는 것이다. 들어가기 전 이번 문제는 DEX와 ERC20에 대한 지식이 없다면 풀수 없는 문제이다.
-Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
+  </script><title data-react-helmet="true">(Ethernaut 취약점 23) Dex Two</title><meta data-react-helmet="true" name="viewport" content="initial-scale=1, width=device-width"/><meta data-react-helmet="true" property="og:title" content="(Ethernaut 취약점 23) Dex Two"/><meta data-react-helmet="true" property="og:site_title" content="(Ethernaut 취약점 23) Dex Two"/><meta data-react-helmet="true" name="description" content="👋 1. Dex Difficulty 4/10 승리 조건 코드 분석 풀이 순서로 진행 될 것이다. 승리 조건 DexTwo Contract의 Token 1과 Token 2의 balance를 전부 소진하기 들어가기 전 Dex contract와 마찬가지고 DexTwo contact도 DEX와 ERC20에 대한 지식이 있어야 한다. Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
 또한 ERC20 standard에 어떤 function이 필요한지, 어떻게 작동하는지 공부해야한다.
-아래 링크들을 통해 충분히 익숙해 진 후 풀기를 권장한다. 링크 이외에 Youtube에도 좋은 자료들이 많다! Uniswap openzeppelin ERC20 contract 코드 분석 분석은 주석에 있습니다! 풀이 이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다.
-그렇다면 어떻게 소모할 수 있을까? 힌트를 보자 Token의 가격이 어떻게 계산되는가? How is the price of the token…"/><meta data-react-helmet="true" property="og:description" content="👋 1. Dex Difficulty 3/10 승리 조건 코드 분석 풀이 순서로 진행 될 것이다. 승리 조건 Dex Contract 해킹 후 토큰 중 하나를 모두 소진(0으로 만들기)하는 것이다. 들어가기 전 이번 문제는 DEX와 ERC20에 대한 지식이 없다면 풀수 없는 문제이다.
-Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
+아래 링크들을 통해 충분히 익숙해 진 후 풀기를 권장한다. 링크 이외에 Youtube에도 좋은 자료들이 많다! Uniswap openzeppelin ERC20 contract 코드 분석 분석은 주석에 있습니다! 풀이 이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다. 22번 Dex 문제를 잘 이해하고 있어야 풀 수 있다.
+그렇다면 어떻게 소모할 수 있을까? 힌트를 …"/><meta data-react-helmet="true" property="og:description" content="👋 1. Dex Difficulty 4/10 승리 조건 코드 분석 풀이 순서로 진행 될 것이다. 승리 조건 DexTwo Contract의 Token 1과 Token 2의 balance를 전부 소진하기 들어가기 전 Dex contract와 마찬가지고 DexTwo contact도 DEX와 ERC20에 대한 지식이 있어야 한다. Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
 또한 ERC20 standard에 어떤 function이 필요한지, 어떻게 작동하는지 공부해야한다.
-아래 링크들을 통해 충분히 익숙해 진 후 풀기를 권장한다. 링크 이외에 Youtube에도 좋은 자료들이 많다! Uniswap openzeppelin ERC20 contract 코드 분석 분석은 주석에 있습니다! 풀이 이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다.
-그렇다면 어떻게 소모할 수 있을까? 힌트를 보자 Token의 가격이 어떻게 계산되는가? How is the price of the token…"/><meta data-react-helmet="true" property="og:author" content="한성원"/><meta data-react-helmet="true" property="og:image" content="/og-image.png"/><meta data-react-helmet="true" property="og:type" content="website"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"/><style>@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc-.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxM.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc-.woff) format("woff")}</style><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link as="script" rel="preload" href="/webpack-runtime-f75b7c22e75d3654f622.js"/><link as="script" rel="preload" href="/framework-0e1bf37de02f7cef2174.js"/><link as="script" rel="preload" href="/app-90207987956c5efb6f3a.js"/><link as="script" rel="preload" href="/f9d3028dbef90a6e9b8db85387d63dd9f4edf538-3528d048b96f92ca0d99.js"/><link as="script" rel="preload" href="/component---src-templates-blog-template-js-ef83b594aa693e649d30.js"/><link as="fetch" rel="preload" href="/page-data/ethernaut/22_dex_ethernaut/22_dex_ethernaut/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1073350324.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1956554647.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2938748437.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="page-wrapper"><header class="page-header-wrapper"><div class="page-header"><div class="front-section"><a class="link" href="/">holyhansss.github.io</a></div><div class="trailing-section"><a class="link" href="/about">about</a><a class="link" href="/posts">posts</a><div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1l6di18" role="combobox" aria-expanded="false"><div class="search-input-wrapper"><div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root search-input css-feqhe6"><div class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-11tfndm"><input type="text" aria-invalid="false" autoComplete="off" value="" class="MuiInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-mnn31" aria-autocomplete="list" autoCapitalize="none" spellcheck="false"/><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium search-icon css-vubbuv" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="SearchOutlinedIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></div></div></div></div></div></div></header><main class="page-content"><header class="post-header"><div class="emoji">🧢</div><div class="info"><div class="categories"><a class="category" href="/posts/취약점분석">취약점분석</a></div></div><h1 class="title">(Ethernaut 취약점 22) Dex</h1><div class="info"><div class="author">posted by <strong>한성원</strong>,</div> <!-- -->February 10, 2022</div></header><div class="post-content"><div class="markdown"><h1 id="-1-dex" style="position:relative;"><a href="#-1-dex" aria-label=" 1 dex permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>👋 1. Dex</h1>
-<p><strong>Difficulty 3/10</strong></p>
+아래 링크들을 통해 충분히 익숙해 진 후 풀기를 권장한다. 링크 이외에 Youtube에도 좋은 자료들이 많다! Uniswap openzeppelin ERC20 contract 코드 분석 분석은 주석에 있습니다! 풀이 이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다. 22번 Dex 문제를 잘 이해하고 있어야 풀 수 있다.
+그렇다면 어떻게 소모할 수 있을까? 힌트를 …"/><meta data-react-helmet="true" property="og:author" content="한성원"/><meta data-react-helmet="true" property="og:image" content="/og-image.png"/><meta data-react-helmet="true" property="og:type" content="website"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2"/><link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"/><style>@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format("woff2")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:300;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmSU5fBBc-.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:url(/static/webfonts/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxM.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:500;src:url(/static/webfonts/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc-.woff) format("woff")}</style><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link as="script" rel="preload" href="/webpack-runtime-f75b7c22e75d3654f622.js"/><link as="script" rel="preload" href="/framework-0e1bf37de02f7cef2174.js"/><link as="script" rel="preload" href="/app-90207987956c5efb6f3a.js"/><link as="script" rel="preload" href="/f9d3028dbef90a6e9b8db85387d63dd9f4edf538-3528d048b96f92ca0d99.js"/><link as="script" rel="preload" href="/component---src-templates-blog-template-js-ef83b594aa693e649d30.js"/><link as="fetch" rel="preload" href="/page-data/ethernaut/23_dexTwo_ethernaut/23_dexTwo_ethernaut/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1073350324.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1956554647.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2938748437.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="page-wrapper"><header class="page-header-wrapper"><div class="page-header"><div class="front-section"><a class="link" href="/">holyhansss.github.io</a></div><div class="trailing-section"><a class="link" href="/about">about</a><a class="link" href="/posts">posts</a><div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1l6di18" role="combobox" aria-expanded="false"><div class="search-input-wrapper"><div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root search-input css-feqhe6"><div class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-11tfndm"><input type="text" aria-invalid="false" autoComplete="off" value="" class="MuiInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-mnn31" aria-autocomplete="list" autoCapitalize="none" spellcheck="false"/><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium search-icon css-vubbuv" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="SearchOutlinedIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></div></div></div></div></div></div></header><main class="page-content"><header class="post-header"><div class="emoji">🧢</div><div class="info"><div class="categories"><a class="category" href="/posts/취약점분석">취약점분석</a></div></div><h1 class="title">(Ethernaut 취약점 23) Dex Two</h1><div class="info"><div class="author">posted by <strong>한성원</strong>,</div> <!-- -->February 11, 2022</div></header><div class="post-content"><div class="markdown"><h1 id="-1-dex" style="position:relative;"><a href="#-1-dex" aria-label=" 1 dex permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>👋 1. Dex</h1>
+<p><strong>Difficulty 4/10</strong></p>
 <ul>
 <li>승리 조건</li>
 <li>코드 분석</li>
@@ -83,12 +81,14 @@ Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대�
 <hr>
 <h2 id="승리-조건" style="position:relative;"><a href="#%EC%8A%B9%EB%A6%AC-%EC%A1%B0%EA%B1%B4" aria-label="승리 조건 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>승리 조건</h2>
 <ul>
-<li>Dex Contract 해킹 후 토큰 중 하나를 모두 소진(0으로 만들기)하는 것이다.</li>
+<li>DexTwo Contract의 Token 1과 Token 2의 balance를 전부 소진하기</li>
 </ul>
 <hr>
 <h2 id="들어가기-전" style="position:relative;"><a href="#%EB%93%A4%EC%96%B4%EA%B0%80%EA%B8%B0-%EC%A0%84" aria-label="들어가기 전 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>들어가기 전</h2>
-<p>이번 문제는 DEX와 ERC20에 대한 지식이 없다면 풀수 없는 문제이다.
-Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
+<ol start="22">
+<li>Dex contract와 마찬가지고 DexTwo contact도 DEX와 ERC20에 대한 지식이 있어야 한다.</li>
+</ol>
+<p>Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대해서는 알아야한다.
 또한 ERC20 standard에 어떤 function이 필요한지, 어떻게 작동하는지 공부해야한다.
 아래 링크들을 통해 충분히 익숙해 진 후 풀기를 권장한다. 링크 이외에 Youtube에도 좋은 자료들이 많다!</p>
 <ul>
@@ -100,276 +100,148 @@ Uniswap의 코드를 전부 분석하지는 못하더라도 작동원리에 대�
 <div class="gatsby-highlight" data-language="solidity"><pre class="language-solidity"><code class="language-solidity"><span class="token comment">// SPDX-License-Identifier: MIT</span>
 <span class="token keyword">pragma</span> <span class="token keyword">solidity</span> <span class="token operator">^</span><span class="token version number">0.6.0</span><span class="token punctuation">;</span>
 
-<span class="token comment">//  importing openzeppelin ERC20 contracts and safe math</span>
 <span class="token keyword">import</span> <span class="token string">"@openzeppelin/contracts/token/ERC20/IERC20.sol"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">"@openzeppelin/contracts/token/ERC20/ERC20.sol"</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'@openzeppelin/contracts/math/SafeMath.sol'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">contract</span> <span class="token class-name">Dex</span>  <span class="token punctuation">{</span>
+<span class="token keyword">contract</span> <span class="token class-name">DexTwo</span>  <span class="token punctuation">{</span>
     <span class="token keyword">using</span> <span class="token class-name">SafeMath</span> <span class="token keyword">for</span> <span class="token builtin">uint</span><span class="token punctuation">;</span>
-    <span class="token comment">// token 1의 address</span>
     <span class="token builtin">address</span> <span class="token keyword">public</span> token1<span class="token punctuation">;</span>
-    <span class="token comment">// token 2의 address</span>
     <span class="token builtin">address</span> <span class="token keyword">public</span> token2<span class="token punctuation">;</span>
-    
-    <span class="token comment">// token1과 token2의 address를 지정한다.</span>
     <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token builtin">address</span> _token1<span class="token punctuation">,</span> <span class="token builtin">address</span> _token2<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token punctuation">{</span>
         token1 <span class="token operator">=</span> _token1<span class="token punctuation">;</span>
         token2 <span class="token operator">=</span> _token2<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment">// 가장 중요한 swap function</span>
     <span class="token keyword">function</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span> <span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint</span> amount<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token punctuation">{</span>
-        <span class="token comment">// token1과 token2이외의 다른 address가 from 또는 to가 되면 revert한다.</span>
-        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">==</span> token1 <span class="token operator">&amp;&amp;</span> to <span class="token operator">==</span> token2<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">==</span> token2 <span class="token operator">&amp;&amp;</span> to <span class="token operator">==</span> token1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Invalid tokens"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 바꾸려는(from) token의 balance가 amount이상 있어야한다.</span>
         <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">IERC20</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">)</span> <span class="token operator">>=</span> amount<span class="token punctuation">,</span> <span class="token string">"Not enough to swap"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// token a와 token b의 교환 비율을 get_swap_price()를 사용해 계산한다</span>
-        <span class="token builtin">uint</span> swap_amount <span class="token operator">=</span> <span class="token function">get_swap_price</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 내 토큰을 Dex contract에 보낸다.</span>
+        <span class="token builtin">uint</span> swap_amount <span class="token operator">=</span> <span class="token function">get_swap_amount</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">IERC20</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transferFrom</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">,</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// Dex contract가 ERC20 token을 보낼 수 있도록 approve한다.</span>
         <span class="token function">IERC20</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> swap_amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// approve한 만큼의 토큰을 msg.sender에게 보내다.</span>
         <span class="token function">IERC20</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transferFrom</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> msg<span class="token punctuation">.</span>sender<span class="token punctuation">,</span> swap_amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment">// token1과 token2이외에 liquidity pool을 생성할 수 있다.</span>
     <span class="token keyword">function</span> <span class="token function">add_liquidity</span><span class="token punctuation">(</span><span class="token builtin">address</span> token_address<span class="token punctuation">,</span> <span class="token builtin">uint</span> amount<span class="token punctuation">)</span> <span class="token keyword">public</span><span class="token punctuation">{</span>
         <span class="token function">IERC20</span><span class="token punctuation">(</span>token_address<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transferFrom</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">,</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment">// swap에서 교환 비율을 계산하기 위해 사용하는 function이다. </span>
-    <span class="token comment">// 계산 방법은 어번 문제에서 엄청 중요하다!!</span>
-    <span class="token keyword">function</span> <span class="token function">get_swap_price</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span> <span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint</span> amount<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> <span class="token keyword">returns</span><span class="token punctuation">(</span><span class="token builtin">uint</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">get_swap_amount</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span> <span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint</span> amount<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> <span class="token keyword">returns</span><span class="token punctuation">(</span><span class="token builtin">uint</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span><span class="token punctuation">(</span><span class="token punctuation">(</span>amount <span class="token operator">*</span> <span class="token function">IERC20</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">IERC20</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment">// spender가 amount만큼의 token에 대해서 approve된다.</span>
     <span class="token keyword">function</span> <span class="token function">approve</span><span class="token punctuation">(</span><span class="token builtin">address</span> spender<span class="token punctuation">,</span> <span class="token builtin">uint</span> amount<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token punctuation">{</span>
-        <span class="token function">SwappableToken</span><span class="token punctuation">(</span>token1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>spender<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">SwappableToken</span><span class="token punctuation">(</span>token2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>spender<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SwappableTokenTwo</span><span class="token punctuation">(</span>token1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>spender<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SwappableTokenTwo</span><span class="token punctuation">(</span>token2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>spender<span class="token punctuation">,</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment">// token별 account가 가지고 있는 개수를 확인 할 수 있다.</span>
     <span class="token keyword">function</span> <span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token builtin">address</span> token<span class="token punctuation">,</span> <span class="token builtin">address</span> account<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">uint</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">IERC20</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span>account<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>      
+<span class="token punctuation">}</span>
 
-<span class="token comment">// SwappableToken contract</span>
-<span class="token keyword">contract</span> <span class="token class-name">SwappableToken</span> <span class="token keyword">is</span> ERC20 <span class="token punctuation">{</span>
-    <span class="token comment">// 계수만큼 minting한다.</span>
+<span class="token keyword">contract</span> <span class="token class-name">SwappableTokenTwo</span> <span class="token keyword">is</span> ERC20 <span class="token punctuation">{</span>
     <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span> name<span class="token punctuation">,</span> <span class="token builtin">string</span> <span class="token keyword">memory</span> symbol<span class="token punctuation">,</span> <span class="token builtin">uint</span> initialSupply<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token function">ERC20</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> symbol<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">_mint</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">,</span> initialSupply<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre></div>
+<span class="token punctuation">}</span></code></pre></div>
+<br/>
+Dex contract와 DexTwo contract의 다른 점은 DexTwo는 swap()에서 token 1과 token 2를 확인하지 않는다.
+즉 어느 token이라도 swap 될 수 있다.
+```solidity
+// 이 require 문에 제외되었다.
+require((from == token1 && to == token2) || (from == token2 && to == token1), "Invalid tokens");
+```
 <hr>
 <h2 id="풀이" style="position:relative;"><a href="#%ED%92%80%EC%9D%B4" aria-label="풀이 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>풀이</h2>
-<p>이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다.
+<p>이번 문제에서 우리는 Dex가 가진 모든 토큰을 소모하면 된다. 22번 Dex 문제를 잘 이해하고 있어야 풀 수 있다.
 그렇다면 어떻게 소모할 수 있을까? 힌트를 보자</p>
 <ul>
-<li>Token의 가격이 어떻게 계산되는가? How is the price of the token calculated?</li>
-<li>Swap이 어떻게 작동하는가? How does the swap method work?</li>
-<li>ERC20의 거래를 어떻게 approve하는가? How do you approve a transaction of an ERC20?</li>
+<li>스왑 방법은 어떻게 수정되었는가? How has the swap method been modified?</li>
+<li>공격할때에 커스텀 토큰 contract를 사용할 수 있는가? Could you use a custom token contract in your attack?</li>
 </ul>
-<p>위에서 말 했듯이 ERC20과 Swap의 작동방식을 이해해야 이 문제를 풀 수 있다.
-힌트를 토대로 풀어보자.</p>
-<p>먼저 문제에서 Swap function이 어떻게 실행되는지 확인해보자
-swap은 다음과 같은 과정을 통해 실행된다.</p>
+<p>코드분석 아래에 보면 Dex contract와 DexTwo contract가 어떻게 수정되었는지 알 수 있다.
+Dex contract와 다르게 더 이상 Token address를 검증하지 않는다.</p>
+<p>그렇다면 우리가 만든 Custom Token으로도 swap이 가능하지 않을까?</p>
+<p>Custom Token을 사용한 attack 시나리오를 보자.</p>
 <ol>
-<li>from과 to가 token1과 2인지 확인한다.</li>
-<li>msg.sender의 from token의 잔액(balance)를 확인한다.</li>
-<li>get_swap_price를 통해 swap할 토큰의 개수를 찾는다</li>
-<li>swap할 from token을 dex에 보낸다.</li>
-<li>dex contract 자신이 transferFrom을 사용할 수 있도록 amount만큼을 approve한다.</li>
-<li>amount만큼의 토큰을 msg.sender에게 보내준다.</li>
+<li>ERC20 standard를 사용하는 Custom Token을 Deploy한다.</li>
+<li>Deploy한 Token을 DexTwo contract가 사용할 수 있도록 approve해준다.</li>
+<li>approve된 개수 중 100개만 liquidity에 add해준다(add_liquidity function 사용).</li>
+<li>Token 1을 1대1 비율로 swap한다(100개 주고 100개 받고).</li>
+<li>이후 Dex contract는 200개의 Custom Token을 가지게 된다(Token 1:0개, Token 2: 100개, Custom Token: 200개).</li>
+<li>Token 2를 2대1 비율로 swap해준다(Custom Token 200개 주고, Token 2 100개 받기).</li>
+<li>Dex contract가 가진 Token 1과 2의 balance를 보면 0이된 것을 확인 할 수 있다.</li>
 </ol>
-<p>그렇다면 3번에 사용된느 <code class="language-text">get_swap_price()</code>는 어떤 함수일까?
-<code class="language-text">get_swap_price()</code>는 예를 들어 token A를 10개를 swap한다고 했을때 token B를 몇개 받을 수 있는지 계산하는 함수이따.
-이 함수의 계산 공식은 다음과 같다 <code class="language-text">(amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this))</code></p>
-<p>바로 이 공식에 문제가 보인다. 최대금액으로 계속 swap하게되면 내가 가지고 있는 Token의 개수가 늘고 DEX가 가지고 있는 토큰의 개수를 0으로 만들 수 있다.
-만약 DEX contract의 토큰 잔액이 0이 되면 언제나 0 또는 error를 return할 것이다.</p>
-<p>먼저 swap에서는 transferFrom을 사용하기 때문에 approve를 해주어야한다.</p>
-<p>우리는 DEX contract의 approve를 사용해 token 1과 token 2에 대해 한번에 approve해줄 수 있다.</p>
-<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// contract를 approve 해주기</span>
-<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> <span class="token string">"1000000000000000000000"</span><span class="token punctuation">)</span></code></pre></div>
 <br/>
-<p>이제 swap하기 전 모든 준비가 완료되었다. 이제 swap을 하면서 DEX의 token중 하나의 value를 0으로 만들어보자.</p>
-<ol>
-<li>
-<p>처음으로 내가 가지고 있는 token 2 모두(10)를 token 1로 swap하였다.</p>
-<p><span
+<p>Token 교환 비율은 아래와 같은 공식을 사용해 결정된다.
+<code class="language-text">(amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this))</code>
+22번 문제를 잘 이해하고 풀었다면 위에 1대1, 2대1 비율이 무슨말인지 알 것이라고 생각한다.</p>
+<br/>
+<p>그렇다면 Attack에 사용할 contract를 보자.
+ERC20 Standard를 이해하고 있어야만 한다!</p>
+<div class="gatsby-highlight" data-language="solidity"><pre class="language-solidity"><code class="language-solidity"><span class="token keyword">import</span> <span class="token string">"@openzeppelin/contracts@3.4.1/token/ERC20/IERC20.sol"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"@openzeppelin/contracts@3.4.1/token/ERC20/ERC20.sol"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">contract</span> <span class="token class-name">HackToken</span> <span class="token keyword">is</span> ERC20 <span class="token punctuation">{</span>
+    <span class="token comment">//새로운 Token을 발행하고 나에서 mint한다.</span>
+    <span class="token keyword">constructor</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token function">ERC20</span><span class="token punctuation">(</span><span class="token string">"HackToken"</span><span class="token punctuation">,</span> <span class="token string">"HAC"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">_mint</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">,</span> <span class="token number">1000000</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">**</span> <span class="token builtin">uint256</span><span class="token punctuation">(</span><span class="token function">decimals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre></div>
+<br/>
+<p>위 HackToken을 Remix를 사용해 contract를 deploy한다.
+발행한 Token은 metamask에서도 확인할 수 있다.
+<span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 576px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 438px; "
     >
       <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 27.22222222222222%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAuElEQVQY002QS27EMAxDff+jFi1g/a0ACQdmEkwXWkiQHkmNzoX8c2QE3J2lpggJtC/2EQFTRWbCPe7eDFXFUlH253lirCjErxG4h24OVUFM/wL9mRH4ChhqFUVEhLfXdWF0LSxJVCYXg04NZYkjmj2d0dGiow3NZ7f7oOAGHseB8Ubeiy/Q3BAaNzC/wHwi/gduCN+kiu7G6Cj4j/BgD7eSyLwjW/Gf/s7iTrEjct8MazXv5pwEfgDiuYKS6mXC+AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 169.44444444444443%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAiCAYAAABfqvm9AAAACXBIWXMAABJ0AAASdAHeZh94AAAEWklEQVRIx62WS4/cRBDH/bU4ckfikBsHhLiQCyISZzhEfAPEiQPigBBcEBcECFBgyUJ2EsiySzazuzM77/HYHo/tfvjtH+r2zGb2kYcUSvqrqx/uruqq+redWEhkAYnUxIkgSQSxyIiFRkiJkAohJMkati+V1c16oSSxFzP3UhKlcY47v3Lvo9f554cvUXlFFEuixRG+22cy95m5C6bzBfOFx8z1mMxcC89fEoYhfqT59LM/2P3iJn7g4gSPdjm8/Sru3a8RmdlQEbmHBG6P4WTBcDyxG7rrDacz1/bNhsEyZBUm3NgNePe7rwjdCY5QmiRvEDqz7ibCuJwTi/Tc5eSCy9JeQZy0UFLihoLTZYWQGqeqauqqpKoqqrqmrGqr13VFZfXajteXUG21NAbt9w6XZByX+KrieWLcXniB1Zs1jDgyqxBpiWllVhLpkliXiKyFGTfBumxhURQWl8cdL8lZZeCJnECVhGlNqGvCtGGpKhZJRiBzyrJqr2UNcyXttVSU1ZMDHWPsoN+DuiLTklW4JF6FBIsFUgheVPK8oChLE5SKnZ0dsjzH8xb8++iIXr/P8fEJC8+3i+u6oWmeDiMm+lqnV4PysuJkWUaaadIsJ00ze4pOU9umaUpq5zMyM7+lX0Vm4UQmieMKqYRNYp1mKAO7cXuAVG2dq7UexQlRIohiYcdNf1Pbjpx+j/jgDU5/d3Ejj+PuCSenPU57fdue9PoMhiP7Ua9/xngyu1A9liCkwg9CgnCFM+l+y8e33uan+wnTSZ+9zgP29jrc29uj07nPvc4D9h/u47oeBweHPDrqnlu8veHCD/CXIc4yzuh6gkQKpNToNG9d3YJx1Xxo9I3Lpr/BxmUDR2ttc0gpbSGlugjVQul23rQ2cJdg57VuE5tG/X9p0z+a8M2bb7Hs/EyQSLqPH9PtPmY0HNI77TF3XUajoaU2SwRPSWxjnU2bu92K127+yGFnF6EUg7MBg8GA6WTMZDLBdV0GwwFKqfMNt2XTNzlrqs26XDYv5s7zys+6bJjCkmNZUJblOS0ZfRvbTPMs2FpOK6hfIhAXLPxlUPLKh7/h7t0hkZLhaMhoPCLLS0h7NLn7Qu6a1DJc4Pw51dy4/Qmr/TuorGC5DHAXLnlRQrmiqeTGjGdaZwgiL4p1Hj7NlQ2a5rk4d9m8VO3Ld/Hd4Mrzc9myqy9hvXn1NidsDjITlsrWJZWm5n5M6RkiEJYvDYtfWynXmW7CvwxXCCGIIkkY1awicwj4gbQ/A7Vdf/U6nvEExPiL9zmb3GQ+f4+z8S1ORu8gks/X89cnmpPnLX2b1lK+helrtByQxAco+Rd5+hAlH5BlA8oadFGhshK9ruGWtXKcwPcZj8esViuGwxHT6ZT5fI7vB3jeCtcNOfFgfw4Hc/h7UnLqp8yiguO5sPU+m80szN+Ysx2NZiui56nQ1IwGfVx3ft7fTqsrlfIkws2FitjWi6Kt8csVwzVr/wO56TuO3P+0TwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
-        alt="swap1.png"
-        title="swap1.png"
-        src="/static/6151e6e6f67d7fefe0f78d64e4c7c4bb/533c1/swap1.png"
-        srcset="/static/6151e6e6f67d7fefe0f78d64e4c7c4bb/e9ff0/swap1.png 180w,
-/static/6151e6e6f67d7fefe0f78d64e4c7c4bb/f21e7/swap1.png 360w,
-/static/6151e6e6f67d7fefe0f78d64e4c7c4bb/533c1/swap1.png 576w"
-        sizes="(max-width: 576px) 100vw, 576px"
+        alt="hackToken"
+        title="hackToken"
+        src="/static/c6517df127297d8cd03e2227ff775ef6/50e4b/hacktoken.png"
+        srcset="/static/c6517df127297d8cd03e2227ff775ef6/e9ff0/hacktoken.png 180w,
+/static/c6517df127297d8cd03e2227ff775ef6/f21e7/hacktoken.png 360w,
+/static/c6517df127297d8cd03e2227ff775ef6/50e4b/hacktoken.png 438w"
+        sizes="(max-width: 438px) 100vw, 438px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
       />
-    </span></p>
-</li>
-<li>
-<p>token 2 20개 모두 token 1로 swap하기</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 568px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 27.77777777777778%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA3klEQVQY0z1QS45DMQjL/U86mmqSAOGTdOERpK8LBDLYBpq+BLYUcw4wEUbvGKND/xaCDUQTzIzeO4QFay3MOSHMld0NTIzRR801H4rtG6oKMytCRojj2Ibag0vl8KhZN6t8zr59WZWbvhhuUQRdq1xEBE6GrYGlq4iJP6bZf8wjrsGzfdNfhqtD1gWSmPEVXB9BuoLuASK6IiLQ3Dq86sSb/EyY3OYVpAqbV/AaaQ1n391B8yOYW5sVlkuUYJ589ikw3OuUrI9uvOPUSRn1vwjsvb91zu9zcM7lmyr+Ae1Rz0kzKVQcAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="swap2.png"
-        title="swap2.png"
-        src="/static/a8ff80ea2142eaf2f16fe39685111945/10e91/swap2.png"
-        srcset="/static/a8ff80ea2142eaf2f16fe39685111945/e9ff0/swap2.png 180w,
-/static/a8ff80ea2142eaf2f16fe39685111945/f21e7/swap2.png 360w,
-/static/a8ff80ea2142eaf2f16fe39685111945/10e91/swap2.png 568w"
-        sizes="(max-width: 568px) 100vw, 568px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></p>
-</li>
-</ol>
-<p>swap을 계속하다보면 내가 가지고 있는 token의 개수는 점점 많아지고 DEX가 가지고 있는 Token의 개수는 줄어드는 것을 볼 수 있을 것이다.</p>
-<ol start="3">
-<li>
-<p>3번째 swap</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 567px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 27.77777777777778%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA4klEQVQY002QS27EMAxDc/+TdtBObFGSJbsLFlaSYhaCAZJ++hz+Ah3OLp2AsrXGs530tzIRFBECYDvP8t2cvXeaWr0ZcfuNAuHhP2COpLtzjEEzo5oyNbjGpI9HV/oYzNhZY0TQzLnWLF9Vi3GMtxWwPrhTFYSCIYPTk+Z26cDdNOrz0zwzOXxQoVQzHv4Nhl+hvc4ef9fofgF3IzNCpPwNgKCme6aaWwMoAA/96jfwCpUh8g/UD2BNFFn+JzBvIAr46gyLEvdd9ioR17q/uZgZdfgoPTnnqsyTn3NyrUvb9Qfloc819XS67wAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="swap3.png"
-        title="swap3.png"
-        src="/static/9f486aebc86db729309dad06ee214d46/8710b/swap3.png"
-        srcset="/static/9f486aebc86db729309dad06ee214d46/e9ff0/swap3.png 180w,
-/static/9f486aebc86db729309dad06ee214d46/f21e7/swap3.png 360w,
-/static/9f486aebc86db729309dad06ee214d46/8710b/swap3.png 567w"
-        sizes="(max-width: 567px) 100vw, 567px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></p>
-</li>
-<li>
-<p>4번째 swap</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 565px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 35%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA8klEQVQoz0WRy44FIQhE/f8fndVVwTdqagK23QuiAilOoZM20H1F4oQYI4gIPvxAv4geG5jZcjEEMDFyKSCKYCIQM1prVvPeo/cON2VidsHeG2ut97T72va+cfO3dvs15px2OiVsvqDkbDRGSgEpMAY1pJQslIhTQinqht+8UlGM5m4MOYRSB9ZeNkWn2jk/Coundmlu3yE8d9VyvXakv4Cc8jvVdqSE3JGz5rMRKr3uTHeq/epICbVHCXXHToagx2qWVUwbiQk5plfQRB+bKmifkz/BYh91BrqpglSPBRFDF5FjeT5Wnjj2t9W/3FnLzf0DMlAgaznUQ5UAAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="swap4.png"
-        title="swap4.png"
-        src="/static/7b50645dcc758dc06c59153079cc5252/07eba/swap4.png"
-        srcset="/static/7b50645dcc758dc06c59153079cc5252/e9ff0/swap4.png 180w,
-/static/7b50645dcc758dc06c59153079cc5252/f21e7/swap4.png 360w,
-/static/7b50645dcc758dc06c59153079cc5252/07eba/swap4.png 565w"
-        sizes="(max-width: 565px) 100vw, 565px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></p>
-</li>
-<li>
-<p>5번째 swap</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 561px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 27.22222222222222%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAsElEQVQY02VQSY4DMQj0/x+biKWAdh8qAmdGmckBGRXUgld5siRYVcxMRgQRYCF55x7sB6/PvopVyeu6DgfgfW+uEDCfIOB0M5oqRYUQ52VFM6O7U1XnhftgcIxIG/RMRLj35uqETcyM4+SguzEsuHHcD+7Md0qfPkewPhJ2rRQwHqDjOHdCVWEovhIGMORO0+SeZdWfC1ZqMB4+Cw38P3nOBIbQ33IE9ey3YOaveNcLUzWCtIOdIxQAAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="swap5.png"
-        title="swap5.png"
-        src="/static/4b6cdd657d4a84579e908b82304161c8/410f3/swap5.png"
-        srcset="/static/4b6cdd657d4a84579e908b82304161c8/e9ff0/swap5.png 180w,
-/static/4b6cdd657d4a84579e908b82304161c8/f21e7/swap5.png 360w,
-/static/4b6cdd657d4a84579e908b82304161c8/410f3/swap5.png 561w"
-        sizes="(max-width: 561px) 100vw, 561px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></p>
-</li>
-</ol>
-<p>마지막 swap은 우리가 가지고 있는 token 65개를 전부 swap하게되면 Dex가 가지고 있는 token의 수보다 많아짐으로 45개만 swap한다. 여기서 45라는 숫자는 <code class="language-text">(amount * IERC20(to).balanceOf(address(this)))/IERC20(from).balanceOf(address(this))</code> 수식에 balance들을 넣어 계산할 수 있다.</p>
-<ol start="6">
-<li><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 496px; "
-    >
-      <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 3.888888888888889%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABJ0AAASdAHeZh94AAAARElEQVQI1x3IQQ6AMAgAQf//TNOCBUoj2vOaOMc5IgJVZWUiKngzttzUqv/dnZyT3hvmxq5NnYs3H9yNMYwZwaWCmfEB3XdLD3+Wg28AAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <img
-        class="gatsby-resp-image-image"
-        alt="lastswap_value_45"
-        title="lastswap_value_45"
-        src="/static/aa88ce5544f10e07e96813a4c75ceada/bb630/lastswap_value_45.png"
-        srcset="/static/aa88ce5544f10e07e96813a4c75ceada/e9ff0/lastswap_value_45.png 180w,
-/static/aa88ce5544f10e07e96813a4c75ceada/f21e7/lastswap_value_45.png 360w,
-/static/aa88ce5544f10e07e96813a4c75ceada/bb630/lastswap_value_45.png 496w"
-        sizes="(max-width: 496px) 100vw, 496px"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-        loading="lazy"
-        decoding="async"
-      />
-    </span></li>
-</ol>
-<p>마지막으로 contract의 token balance를 확인해보면 둘중 하나가 0으로 되어있는 것을 볼 수 있을 것이다.</p>
-<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// 둘 중 하나가 0이면 된다.</span>
-<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">token1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">token2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre></div>
-<p>token중 하나의 balance가 0이 된 것을 확인했다면 ethernaut으로 돌아와 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.</p>
+    </span>
+import tokens에 들어가 HackToken의 주소를 입력하면 위와같이 HackToken의 심불인 HAC를 확인 할 수 있다.</p>
+<br/>
+<p>Token 발행이 끝났다면 liquidity에 add할 수 있도록 DexTwo를 <code class="language-text">approve</code> 해주어야한다.
+Remix에서 Deploy된 contract에서 <code class="language-text">approve</code>에 인자를 넣고 실행시킨다. 그때 <code class="language-text">spender</code>은 DexTwo의 주소이고 <code class="language-text">amount</code>는 앞으로 <code class="language-text">approve</code>를 더하지 않을 수 있도록 <code class="language-text">1000</code>을 입력 후 transaction을 보낸다.</p>
+<p>이제 Ethernauts로 돌아와 console창과 상호작용한다.
+ctrl + shift + i를 눌러 console창을 활성화 시키자</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// DexTwo가 내 token 1과 2를 transferFrom 할 수 있도록 approve 해준다.</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">approve</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> <span class="token string">"1000000000000000000000"</span><span class="token punctuation">)</span>
+<span class="token comment">// liquidity에 hacking token 100개를 add 해준다.</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">add_liquidity</span><span class="token punctuation">(</span><span class="token string">"hacking contract address"</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token comment">// hack token 100개를 token 1 100개와 swap 해준다.</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span><span class="token string">"hacking contract address"</span><span class="token punctuation">,</span><span class="token string">"Token 1 address"</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token comment">// 이제 liquidity pool에 ㅔHAC token이 200개 있음으로 200개를 swap 해준다.</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">swap</span><span class="token punctuation">(</span><span class="token string">"hacking contract address"</span><span class="token punctuation">,</span><span class="token string">"Token 2 address"</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+<span class="token comment">// Dex의 Token1과 2의 balance가 0이 된 것을 확인한다.</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">token1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token operator">=></span> x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token keyword">await</span> contract<span class="token punctuation">.</span><span class="token function">token2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token operator">=></span> x<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div>
+<p>token1과 2, 모두가 balance가 0이 된 것을 확인했다면 ethernaut으로 돌아와 Submit instance를 누르고 조금 기다리면 block이 mine되고, 아래와 같이 뜨며 마무리된다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">٩(- ̮̮̃-̃)۶ Well done, You have completed this level!!!</code></pre></div>
 <hr>
 <h2 id="마무리" style="position:relative;"><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC" aria-label="마무리 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>마무리</h2>
-<p>이번 문제와 같은 경우는 자본이 많다면 쉽게 가격을 조작할 수 있게된다. 그렇기 떄문에 대부분 oracle을 사용해 정보를 얻어온다. 나는 Chainlink Oracle에 대한 개념은 있지만 직접 사용해본 적이 없다. 문제를 풀면 kovan testnet에서 사용할 수 있는 코드를 주는데, 이는 oracle을 직접적으로 사용해보는 코드이다. 나중에 contract를 짤때 그리고 uniswap을 분석할 떄를 대비해 미리 공부해두면 좋을 것 같다.</p>
-<p>이번 문제를 풀기전 Uniswap V2 코드를 분석해봤는데, 아직 내가 부족하구나ㅠㅠ 라는 것을 느낄 수 있었다. Ethernaut가 끝난 후 여러가지 여러 종류의 contract를 분석하며 기술을 꾸준히 연마해가야겠다!</p>
+<p>이번 문제는 22. Dex 문제에서 바뀐 부분이 명확해서 취약점을 쉽게 찾을 수 있었다. 22번과 23번을 풀면서 약간이남아 swap에 대해 깨달은 것 같다. 또한 이 문제에서는 ERC20 Token이라고해서 모두 신뢰할 수 있는 것은 아니라는 교훈을 주는 것 같다. 이제 얼마 남지 않은 문제들도 열심히 풀어서 초보자 티를 벗어보자 :)</p>
 <hr>
 <h2 id="ref" style="position:relative;"><a href="#ref" aria-label="ref permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>REF</h2>
 <ul>
 <li>rinkeyb network ether faucet: <a href="https://faucets.chain.link/rinkeby">https://faucets.chain.link/rinkeby</a></li>
 <li>ethernaut: <a href="https://ethernaut.openzeppelin.com/">https://ethernaut.openzeppelin.com/</a></li>
 <li>remix IDE: <a href="https://remix.ethereum.org">https://remix.ethereum.org</a></li>
-<li>Ethernaut 22 DEX walkthrough: <a href="https://medium.com/@this_post/ethernaut-22-dex-modified-version-writeups-4330c33a0743">https://medium.com/@this_post/ethernaut-22-dex-modified-version-writeups-4330c33a0743</a></li>
 </ul>
 <div class="table-of-contents">
 <ul>
@@ -380,4 +252,4 @@ swap은 다음과 같은 과정을 통해 실행된다.</p>
 <li><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC">마무리</a></li>
 <li><a href="#ref">REF</a></li>
 </ul>
-</div></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"><a class="post-card prev" href="/ethernaut/21_shop_ethernaut/21_shop_ethernaut/"><div class="direction">이전 글</div><div class="title">(Ethernaut 취약점 21) Shop</div></a></div><div class="post-navigator-card-wrapper"><a class="post-card next" href="/ethernaut/23_dexTwo_ethernaut/23_dexTwo_ethernaut/"><div class="direction">다음 글</div><div class="title">(Ethernaut 취약점 23) Dex Two</div></a></div></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2022<!-- --> <a href="https://github.com/holyhansss">한성원</a> powered by<a href="https://github.com/zoomKoding/zoomkoding-gatsby-blog"> zoomkoding-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/ethernaut/22_dex_ethernaut/22_dex_ethernaut/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-cd840d73727c2e366b63.js"],"app":["/app-90207987956c5efb6f3a.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-3c26d4b7e3608ed0ece4.js"],"component---src-pages-404-js":["/component---src-pages-404-js-4917da7ef5b541e98a81.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b5804eba3d16afcb3700.js"],"component---src-pages-index-js":["/component---src-pages-index-js-bc882cd03f70c89c8148.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-ef83b594aa693e649d30.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-fea460fedd50cffb10cd.js"]};/*]]>*/</script><script src="/polyfill-cd840d73727c2e366b63.js" nomodule=""></script><script src="/component---src-templates-blog-template-js-ef83b594aa693e649d30.js" async=""></script><script src="/f9d3028dbef90a6e9b8db85387d63dd9f4edf538-3528d048b96f92ca0d99.js" async=""></script><script src="/app-90207987956c5efb6f3a.js" async=""></script><script src="/framework-0e1bf37de02f7cef2174.js" async=""></script><script src="/webpack-runtime-f75b7c22e75d3654f622.js" async=""></script></body></html>
+</div></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"><a class="post-card prev" href="/ethernaut/22_dex_ethernaut/22_dex_ethernaut/"><div class="direction">이전 글</div><div class="title">(Ethernaut 취약점 22) Dex</div></a></div><div class="post-navigator-card-wrapper"><a class="post-card next" href="/allSeries/"><div class="direction">다음 글</div><div class="title">시리즈 별 정리(모든 글이 다 여기 정리되어 있어요!)</div></a></div></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2022<!-- --> <a href="https://github.com/holyhansss">한성원</a> powered by<a href="https://github.com/zoomKoding/zoomkoding-gatsby-blog"> zoomkoding-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/ethernaut/23_dexTwo_ethernaut/23_dexTwo_ethernaut/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-cd840d73727c2e366b63.js"],"app":["/app-90207987956c5efb6f3a.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-3c26d4b7e3608ed0ece4.js"],"component---src-pages-404-js":["/component---src-pages-404-js-4917da7ef5b541e98a81.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b5804eba3d16afcb3700.js"],"component---src-pages-index-js":["/component---src-pages-index-js-bc882cd03f70c89c8148.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-ef83b594aa693e649d30.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-fea460fedd50cffb10cd.js"]};/*]]>*/</script><script src="/polyfill-cd840d73727c2e366b63.js" nomodule=""></script><script src="/component---src-templates-blog-template-js-ef83b594aa693e649d30.js" async=""></script><script src="/f9d3028dbef90a6e9b8db85387d63dd9f4edf538-3528d048b96f92ca0d99.js" async=""></script><script src="/app-90207987956c5efb6f3a.js" async=""></script><script src="/framework-0e1bf37de02f7cef2174.js" async=""></script><script src="/webpack-runtime-f75b7c22e75d3654f622.js" async=""></script></body></html>
