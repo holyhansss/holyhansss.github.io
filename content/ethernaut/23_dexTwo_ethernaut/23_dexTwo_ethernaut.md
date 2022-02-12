@@ -8,7 +8,7 @@ categories: 취약점분석
 ---
 
 
-# 👋 1. Dex
+# 👋 1. Dex Two
 __Difficulty 4/10__
 
 - 승리 조건
