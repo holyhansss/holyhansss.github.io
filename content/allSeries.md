@@ -14,7 +14,7 @@ categories: ~feature~
 ## EVM
 - [EVM과 Transaction](https://holyhansss.github.io/EVM/evm/)
 - [Solidity Bytecode and Opcode Basics](https://holyhansss.github.io/EVM/SolidityBytecodeandOpcodeBasics/)
-
+- [Solidity Storage Layout For Proxy Contracts and Diamonds](https://holyhansss.github.io/EVM/StorageLayoutForProxy/)
 
 ## 취약점 시리즈
 취약점 시리즈는 알려진 smart contract의 취약점에 대해 다룬다.
@@ -29,7 +29,6 @@ categories: ~feature~
 - [취약점 시리즈 8 tx.origin](https://holyhansss.github.io/vulnerability/tx.origin/tx_origin/)
 - [취약점 시리즈 9 Self Destruct](https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/)
 - [취약점 시리즈 10 Private](https://holyhansss.github.io/vulnerability/private_variable/private_variable/)
-
 
 
 ## Ethernaut 시리즈
