@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: Olympus Dao란
+title: Olympus Dao란(작성중)
 date: '2022-03-12 01:23:00'
 author: 한성원
 tags: blog Defi OlympusDao Dao Blockchain

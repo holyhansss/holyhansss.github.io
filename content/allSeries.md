@@ -11,6 +11,10 @@ categories: ~feature~
 # 👋 시리즈 별 정리
 시리즈 별로 보기 편하게 정리해두었다!
 
+## Defi
+- [Defi 1.0 vs 2.0](https://holyhansss.github.io/defi/Defi_1.0vs2.0/)
+- [Olympus Dao란](https://holyhansss.github.io/defi/OlympusDao%EC%97%90%EB%8C%80%ED%95%98%EC%97%AC/)
+
 ## EVM
 - [EVM과 Transaction](https://holyhansss.github.io/EVM/evm/)
 - [Solidity Bytecode and Opcode Basics](https://holyhansss.github.io/EVM/SolidityBytecodeandOpcodeBasics/)
