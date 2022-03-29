@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-category-template-js",
+    "path": "/posts/NFT",
+    "result": {"pageContext":{"currentCategory":"NFT","categories":["All","~feature~","Defi","나","EVM","취약점분석","ethereum","NFT"],"edges":[{"node":{"id":"384c04eb-e992-5006-a9f0-240e31b36cc3","excerpt":"👋 EIP-2981에 대하여 (Royalty Standard) -> 재판매 수수료 무엇이며 왜 등장하였나? EIP-2981은 NFT(Non-Furgable Token)에 대한 Royalty(재판매 수수료) 지급 정보를 저장해두는 표준이다. 현재 NFT의 Royalty 좀 이상하다. 진짜 말 그대로 이상하다.\r\n 위 사진을 보면 알 수 있다시피, marketplace마다 royalty 지급 기준이 다르다. 그러면 다음과 같은 문제가 일어날 수 있다. 예를 들에 OpenSea에서 A가 작품을 민팅하여 판다고 가정해보자. 그리고 10%의 royalty를 적용했다고 생각해보자. A는 Opensea를 사용해 B에게 작품 판매를 통해 돈을 벌었다. B는 Opensea에서 다시 작품을 C 판매해 수익의 90%를 챙긴고, 10%는 A에게 돌아간다. C는 Opensea가 아닌 Rarible에가서 작품을 재판매 했다. C는 돈을 받지만 A는 작품에 대한 Royalty를 받지 못한다. 현재 대부분의 …","fields":{"slug":"/NFT/EIP-2981에대하여/"},"frontmatter":{"categories":"NFT","title":"EIP-2981에 대하여 (Royalty Standard)","date":"December 13, 2021"}},"next":{"fields":{"slug":"/startingBlog/"}},"previous":{"fields":{"slug":"/EVM/evm/"}}}]}},
+    "staticQueryHashes": ["1073350324","1956554647","2938748437"]}
