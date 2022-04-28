@@ -13,7 +13,8 @@ categories: ~feature~
 
 ## Defi
 - [Defi 1.0 vs 2.0](https://holyhansss.github.io/defi/Defi_1.0vs2.0/)
-- [Olympus Dao란](https://holyhansss.github.io/defi/OlympusDao%EC%97%90%EB%8C%80%ED%95%98%EC%97%AC/)
+- [UniswapV2 Core Factory Contract](https://holyhansss.github.io/defi/uniswapV2CoreFactory/)
+- [UniswapV2 Core Pair Contract](https://holyhansss.github.io/defi/uniswapV2CorePair/)
 
 ## EVM
 - [EVM과 Transaction](https://holyhansss.github.io/EVM/evm/)
