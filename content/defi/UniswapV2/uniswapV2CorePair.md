@@ -9,7 +9,7 @@ categories: Defi
 
 
 # 👋 Uniswap V2 Core Pair
-저번주에 [Uniswap Factory Contact](https://holyhansss.github.io/defi/uniswapV2CoreFactory/) 분석을 해봤다. Factory는 생각보다는 코드가 쉬웠지만 Pair은 조금 더 어려워 보인다! 
+저번주에 [Uniswap Factory Contract](https://holyhansss.github.io/defi/uniswapV2CoreFactory/) 분석을 해봤다. Factory는 생각보다는 코드가 쉬웠지만 Pair은 조금 더 어려워 보인다! 
 
 Pair Contact는 [여기서](https://github.com/Uniswap/v2-core/blob/master/contracts/UniswapV2Pair.sol) 확인할 수 있고 Pair 분석 전 [Factory Contract 분석](https://holyhansss.github.io/defi/uniswapV2CoreFactory/)을 보고오면 좋을 것 같다.
 
