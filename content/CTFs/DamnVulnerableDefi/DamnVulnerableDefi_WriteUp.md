@@ -1,6 +1,6 @@
 ---
 emoji: 🧢
-title: (DamnVulnerableDefi) solution
+title: Damn Vulnerable Defi - Solution Write Up
 date: '2022-09-02 01:18:00'
 author: 한성원
 tags: DamnVulnerableDeFi writeup Unstoppable NaiveReceiver Truster SideEntrance TheRewarder Selfie Compromised Puppet PuppetV2 FreeRider Backdoor Climber SafeMiners
@@ -16,14 +16,14 @@ categories: 취약점분석
 
     You start with 100 DVT tokens in balance.
 
-- - - 
+<br>
 
-In this challenge, we need to attack and stop the pool from offering flash loans. __UnstoppableLender contract__ consist of two functions, which is __depositTokens()__ and __flashLoan()__. The vulnerability is included in __flashLoan()__. 
+In this challenge, we need to attack and stop the pool from offering flash loans. `UnstoppableLender contract` consist of two functions, which is `depositTokens()` function and `flashLoan()` function. The vulnerability is included in `flashLoan()` function. 
 
 ```solidity
     assert(poolBalance == balanceBefore);
 ```
-This line of code in __flashLoan()__ compares __poolBalance__ and __balanceBefore__. If they are not equal to each other it reverts. __poolBalance__ is only update by __depositTokens()__ and __balanceBefore__ is calculated by `damnValuableToken.balanceOf(address(this))` inside of flashLoan. If we send some tokens to UnstoppableLender contratct, __flashLoan()__ and __poolBalance__ never going to match. 
+This line of code in `flashLoan()` function compares `poolBalance` and `balanceBefore`. If they are not equal to each other it reverts. `poolBalance` is only update by `depositTokens()` function and `balanceBefore` is calculated by `damnValuableToken.balanceOf(address(this))` inside of flashLoan. If we send some tokens to UnstoppableLender contratct, `flashLoan()` function and `poolBalance` never going to match. 
 
 
 
@@ -38,9 +38,9 @@ This line of code in __flashLoan()__ compares __poolBalance__ and __balanceBefor
 
     Drain all ETH funds from the user's contract. Doing it in a single transaction is a big plus ;)
 
-- - -
+<br>
 
-In this challenge, we need Drain all ETH funds from the user's contract(FlashLoanReceiver.sol). In __NaiveReceiverLenderPool__ contract, the flashLoan() function does not check if borrower is a authorized user. Since flashLoan() do not authenticate, we can execute flashLoan with any contract address as borrower. We just need to repeat calling flashLoan function with user's contract address. Here is test code to exploit.
+In this challenge, we need Drain all ETH funds from the user's contract(FlashLoanReceiver.sol). In `NaiveReceiverLenderPool` contract, the flashLoan() function does not check if borrower is a authorized user. Since `flashLoan()` function do not authenticate, we can execute flashLoan with any contract address as borrower. We just need to repeat calling flashLoan function with user's contract address. Here is test code to exploit.
 
 ```solidity
     it('Exploit', async function () {
@@ -60,9 +60,9 @@ In this challenge, we need Drain all ETH funds from the user's contract(FlashLoa
 
     But don't worry, you might be able to take them all from the pool. In a single transaction.
 
-- - -
+<br>
 
-In this challenge, we need to take all 1 million DVT token from the pool. This pool offers flashLoan and it allows any function call to be executed during the flash loan. Since we can call any function from __TrusterLenderPool contract__, we can call __approve()__ function of DVT token contract. Here is attack contract. 
+In this challenge, we need to take all 1 million DVT token from the pool. This pool offers flashLoan and it allows any function call to be executed during the flash loan. Since we can call any function from `TrusterLenderPool contract`, we can call `approve()` function of DVT token contract. Here is attack contract. 
 
 ```solidity
 contract AttackTruster{
@@ -78,7 +78,7 @@ contract AttackTruster{
 }
 ```
 
-Here is how it goes. We first get the balance of DVT token of pool and get payload of `approve()` function that allows attacker can withdraw the DVT tokens. Since pool will be the caller of approve function, it does not revert. Then execute flashloan. The first argement of flashLoan function should be 0, so we do not have to payback. All after that, we can withdraw 1 million DVT token using __transferFrom()__.
+Here is how it goes. We first get the balance of DVT token of pool and get payload of `approve()` function that allows attacker can withdraw the DVT tokens. Since pool will be the caller of approve function, it does not revert. Then execute flashloan. The first argement of flashLoan function should be 0, so we do not have to payback. All after that, we can withdraw 1 million DVT token using `transferFrom()` function.
 
 
 
@@ -92,11 +92,11 @@ Here is how it goes. We first get the balance of DVT token of pool and get paylo
 
     You must take all ETH from the lending pool.
 
-- - -
+<br>
 
-In this challenge, we must take all ETH from the lending pool. __SideEntranceLenderPool contract__ provides flashloan just like previous contracts. This pool contract also contains __deposit()__ and __withdraw()__ functions as well. The vulnerability comes from __deposit()__ function. It increases balance of `msg.sender`, however, it does not check if the balance of pool has really increased. 
+In this challenge, we must take all ETH from the lending pool. `SideEntranceLenderPool contract` provides flashloan just like previous contracts. This pool contract also contains `deposit()` function and `withdraw()` function as well. The vulnerability comes from `deposit()` function. It increases balance of `msg.sender`, however, it does not check if the balance of pool has really increased. 
 
-There is a line of code in __flashLoan()__:  `IFlashLoanEtherReceiver(msg.sender).execute{value: amount}();`. This line of code allows `msg.sender` to execute __execute()__ function from itself. We can call __deposit()__ function during flash loan to increase balance of ourselves, and we can withdraw.
+There is a line of code in `flashLoan()`:  `IFlashLoanEtherReceiver(msg.sender).execute{value: amount}();`. This line of code allows `msg.sender` to execute `execute()` function from itself. We can call `deposit()` function during flash loan to increase balance of ourselves, and we can withdraw.
 
 Here is attack contract:
 
@@ -116,7 +116,7 @@ contract FlashLoanEtherReceiver {
 }
 ```
 
-By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flashLoan, it will execute __execute()__ function from attack contract which will deposit flash loan amount. Then we withdraw from the pool and send stolen ETH to attacker.
+By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flashLoan, it will execute `execute()` function from attack contract which will deposit flash loan amount. Then we withdraw from the pool and send stolen ETH to attacker.
 
 
 - - -
@@ -131,7 +131,7 @@ By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flash
 
     Oh, by the way, rumours say a new pool has just landed on mainnet. Isn't it offering DVT tokens in flash loans?
 
-- - -
+<br>
 
 In this challenge, we must claim most rewards for ourselves with no DVT token. The challenge also provides flash loan and reward pool. We need to keep an eye on reward pool, `TheRewarderPool.sol`. After deposit DVT token for 5 days, we can get rewards. However, there are already rewards in the pool from previous round, and rewarders have not claimed the reward. 
 If we flashloan massive amount of DVT, and deposit to the rewarder pool, we will get most of the reward token.
@@ -187,7 +187,7 @@ contract AttackTheRewarder {
 
     You start with no DVT tokens in balance, and the pool has 1.5 million. Your objective: take them all.
 
-- - -
+<br>
 
 In this challenge, we must drain all ETH from Governance pool. According to `_hasEnoughVotes()` function, it is possible to make any action queue if we have more than half of governance token. Since we utilize flash loan of governance token, we can make action queue to call `drainAllFunds()` function. Here is attack contract:
 
@@ -254,7 +254,7 @@ server: cloudflare
 
     Starting with only 0.1 ETH in balance, you must steal all ETH available in the exchange.
 
-- - -
+<br>
 
 In this challenge, our goal is to steal all ETH available in the exchange contract. We have received an strange responses from their server which could converted into private keys. We can convert bytes to string, and decode it with base64. It will get us the private keys
 
@@ -308,7 +308,7 @@ Here is exploit code:
 
     Starting with 25 ETH and 1000 DVTs in balance, you must steal all tokens from the lending pool.
 
-- - -
+<br>
 
 In this challenge, we must steal all tokens from the lending pool. Also the challenge provide UniswapV1 as oracle. However, UniswapV1 has only 10 ETH and 10 DVT, which means that the exchange rate can be easily changed. Since `calculateDepositRequired()` function in `borrow()` function is using UniswapV1, we can manipulate token price by manipulating UniswapV1. 
 
@@ -338,7 +338,7 @@ First we need to approve UniswapV1 to utilze our token, and exchange all DVT tok
 
     You start with 20 ETH and 10000 DVT tokens in balance. The new lending pool has a million DVT tokens in balance. You know what to do ;)
 
-- - -
+<br>
 
 In this challenge, we must steal million DVT from the pool. This challenge is very similar to previous challenge, puppet. The difference is that puppet v2 is using Uniswap v2 exchange as a price oracle, along with the recommended utility libraries. However, the oracle still can be manipulated. First we can swap 10000 DVT token to ETH using `swapExactTokensForETH()` function from Uniswap Router. Then we just need to calculate the deposit amount to borrow all DVT from pool. Since we use WeTH to borrow DVT, deposit calculated amount to WETH. Then borrow DVT balance of pool.
 
@@ -370,7 +370,7 @@ In this challenge, we must steal million DVT from the pool. This challenge is ve
 
     Sadly you only have 0.5 ETH in balance. If only there was a place where you could get free ETH, at least for an instant.
 
-- - -
+<br>
 
 In this challenge, we have to take 6 NFT from marketplace with only 0.5 ether. In addition, NFT is 15 ether worth. The vulnerability is in the `_buyOne()` function. Here is the line that is vulnerable.
 
@@ -379,7 +379,7 @@ In this challenge, we have to take 6 NFT from marketplace with only 0.5 ether. I
     payable(token.ownerOf(tokenId)).sendValue(priceToPay);
 ```
 
-If someone buys NFT, the marketplace transfer the NFT to buyer first. Then send value to token owner, which is now buyer. If only we could get 15 ETH, we can take all NFTs from marketplace. Here is where flash swap is needed. We can get 15 ETH for an instant from __Uniswap__. In `swap()` function in Uniswap pair, we are allow to send data to call `uniswapV2Call()`. We just need to create `uniswapV2Call()` function that buys NFT and return funds to Uniswap pair contract. Here is attack contract.
+If someone buys NFT, the marketplace transfer the NFT to buyer first. Then send value to token owner, which is now buyer. If only we could get 15 ETH, we can take all NFTs from marketplace. Here is where flash swap is needed. We can get 15 ETH for an instant from `Uniswap`. In `swap()` function in Uniswap pair, we are allow to send data to call `uniswapV2Call()`. We just need to create `uniswapV2Call()` function that buys NFT and return funds to Uniswap pair contract. Here is attack contract.
 
 ```solidity
 contract AttackerFreeRider is IUniswapV2Callee {
@@ -446,7 +446,7 @@ In `uniswapV2Call()` function, first withdraw ETH from WETH contract. Secondly, 
 
     Your goal is to take all funds from the registry. In a single transaction.
 
-- - -
+<br>
 
 In this challenge, our goal is to take all funds from thie registry. If we look at wallet resigtry contract, it is a proxy callback contract. Also `proxyCreated()` function, the callback function, we can see the parameter `initializer` must be a `GnosisSafe.setup.selector`. Also this setup function is called during `GnosisSafeProxyFactory.createProxyWithCallback()`. When `setup()` function is called, it takes a payload `to` and `data` and etc. The `setupModules()` inside `setup()` function will trigger delegate call to `to` with the `data` as a payload. Here is the vulnerable spot. We can set the module to be our attack contract, and run the `data` payload. Here is the attack contract.
 
@@ -502,7 +502,7 @@ First we need to approve function, that will be delegate called by the proxy con
 
     Your goal is to empty the vault.
 
-- - -
+<br>
 
 In this challenge, our goal is to empty the vault. We must to know about UUPS upgrade concept to solve this challenge. Firstly, the vulnerability is found in `Timelock` contract. The `execute()` function does not follows Checks Effects Interactions pattern.
 
@@ -515,7 +515,7 @@ In this challenge, our goal is to empty the vault. We must to know about UUPS up
     require(getOperationState(id) == OperationState.ReadyForExecution);
 ```
 
-This code allows us to make a schedule for execution before require statement, which means we can call `execute()` function first, and then add schedule that matches `operationId`. Also, during execution, we can call any function we want with address of __timelock contract__. To go through the require statement, first we need to call `updateDelay()` function with parameter `0`. Then set the attack contract to have proposer role, and call `transferOwnership()` to set the vault owner to be attack contract. Lastly, call `schedule()` function. Here is the attack contract.
+This code allows us to make a schedule for execution before require statement, which means we can call `execute()` function first, and then add schedule that matches `operationId`. Also, during execution, we can call any function we want with address of `timelock contract`. To go through the require statement, first we need to call `updateDelay()` function with parameter `0`. Then set the attack contract to have proposer role, and call `transferOwnership()` to set the vault owner to be attack contract. Lastly, call `schedule()` function. Here is the attack contract.
 
 ```solidity
 
