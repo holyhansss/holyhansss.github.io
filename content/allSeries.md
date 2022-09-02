@@ -40,6 +40,8 @@ categories: ~feature~
 - [취약점 시리즈 9 Self Destruct](https://holyhansss.github.io/vulnerability/selfdestruct/selfdestruct/)
 - [취약점 시리즈 10 Private](https://holyhansss.github.io/vulnerability/private_variable/private_variable/)
 
+## Damn Vulnerable Defi
+- [Damn Vulnerable Defi Solution 1-12](https://holyhansss.github.io/CTFs/DamnVulnerableDefi/DamnVulnerableDefi_WriteUp/)
 
 ## Ethernaut 시리즈
 Ethernaut 시리즈는 Ethernaut 문제를 하나하나 풀어본 후 풀이를 적는다. 거의 모든 문제가 어렵기 때문에 풀이를 보며 공부하고, 이해한 내용을 적었다. Ethernaut를 풀기 시작한 여러분도 푸는 것에만 집중하는게 아니라 하나하나 뜯어보면서 배우길 바란다 :) 

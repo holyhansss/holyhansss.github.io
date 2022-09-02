@@ -23,6 +23,9 @@ In this challenge, we need to attack and stop the pool from offering flash loans
 ```solidity
     assert(poolBalance == balanceBefore);
 ```
+
+<br>
+
 This line of code in `flashLoan()` function compares `poolBalance` and `balanceBefore`. If they are not equal to each other it reverts. `poolBalance` is only update by `depositTokens()` function and `balanceBefore` is calculated by `damnValuableToken.balanceOf(address(this))` inside of flashLoan. If we send some tokens to UnstoppableLender contratct, `flashLoan()` function and `poolBalance` never going to match. 
 
 
@@ -49,8 +52,9 @@ In this challenge, we need Drain all ETH funds from the user's contract(FlashLoa
     });
 ```
 
-- - -
+<br>
 
+- - -
 
 ## Challenge name: Truster
 ### Challenge description:
@@ -78,9 +82,9 @@ contract AttackTruster{
 }
 ```
 
+<br>
+
 Here is how it goes. We first get the balance of DVT token of pool and get payload of `approve()` function that allows attacker can withdraw the DVT tokens. Since pool will be the caller of approve function, it does not revert. Then execute flashloan. The first argement of flashLoan function should be 0, so we do not have to payback. All after that, we can withdraw 1 million DVT token using `transferFrom()` function.
-
-
 
 - - -
 
@@ -115,6 +119,8 @@ contract FlashLoanEtherReceiver {
     receive() external payable{}
 }
 ```
+
+<br>
 
 By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flashLoan, it will execute `execute()` function from attack contract which will deposit flash loan amount. Then we withdraw from the pool and send stolen ETH to attacker.
 
@@ -175,6 +181,8 @@ contract AttackTheRewarder {
 }
 ```
 
+<br>
+
 - - -
 
 ## Challenge name: Selfie
@@ -226,6 +234,8 @@ contract AttackTheSelfiePool {
     }
 }
 ```
+
+<br>
 
 First, by calling `attackTheSelfiePool()` function, we can get flash loan, and during flash loan it will call `receiveTokens()` function. `receiveTokens()` function will queueAction with payload of `drainAllFunds()` function and payback the flash loan. After 2 days, just executing action will drain all tokens.
 
@@ -297,6 +307,7 @@ Here is exploit code:
     });
 ```
 
+<br>
 
 - - -
 
@@ -327,6 +338,7 @@ First we need to approve UniswapV1 to utilze our token, and exchange all DVT tok
     });
 ```
 
+<br>
 
 - - -
 
@@ -358,6 +370,8 @@ In this challenge, we must steal million DVT from the pool. This challenge is ve
     });
 ```
 
+<br>
+
 - - -
 
 ## Challenge name: Free rider 
@@ -378,6 +392,8 @@ In this challenge, we have to take 6 NFT from marketplace with only 0.5 ether. I
     token.safeTransferFrom(token.ownerOf(tokenId), msg.sender, tokenId);
     payable(token.ownerOf(tokenId)).sendValue(priceToPay);
 ```
+
+<br>
 
 If someone buys NFT, the marketplace transfer the NFT to buyer first. Then send value to token owner, which is now buyer. If only we could get 15 ETH, we can take all NFTs from marketplace. Here is where flash swap is needed. We can get 15 ETH for an instant from `Uniswap`. In `swap()` function in Uniswap pair, we are allow to send data to call `uniswapV2Call()`. We just need to create `uniswapV2Call()` function that buys NFT and return funds to Uniswap pair contract. Here is attack contract.
 
@@ -430,6 +446,8 @@ contract AttackerFreeRider is IUniswapV2Callee {
 
 }
 ```
+
+<br>
 
 In `uniswapV2Call()` function, first withdraw ETH from WETH contract. Secondly, call `buyMany()` function with 15 ETH. As we buy one NFT with 15 ETH, it will return 15 ETH. Since marketplace have 90 ETH balance, marketplace will pay for our purchase. After buy NFTs, we return ETH to Uniswap. Then send NFT to our partner. It will trigger the partner to transfer 45 ETH that was promised. 
 
@@ -485,6 +503,8 @@ contract AttackBackdoor {
 }
 ```
 
+<br>
+
 First we need to approve function, that will be delegate called by the proxy contract. This will approve the attack contract to transfer the distributed token. We need to make a token approving data and put into `setup()` function's payload. Then we can transfer the token to the attacker's address, and just repeat this 4 times. 
 
 
@@ -514,6 +534,8 @@ In this challenge, our goal is to empty the vault. We must to know about UUPS up
     
     require(getOperationState(id) == OperationState.ReadyForExecution);
 ```
+
+<br>
 
 This code allows us to make a schedule for execution before require statement, which means we can call `execute()` function first, and then add schedule that matches `operationId`. Also, during execution, we can call any function we want with address of `timelock contract`. To go through the require statement, first we need to call `updateDelay()` function with parameter `0`. Then set the attack contract to have proposer role, and call `transferOwnership()` to set the vault owner to be attack contract. Lastly, call `schedule()` function. Here is the attack contract.
 
@@ -576,6 +598,8 @@ contract ClimberAttacker {
 }
 ```
 
+<br>
+
 In attack contract there are more functions that I have not explained. Since we became the owner of vault contract, we can upgrade vault contract to our new logic contract, so I built a new logic contract that allow us to sweep all the funds.
 
 ```solidity
@@ -601,6 +625,8 @@ contract ClimberVaultAttackUpgrade is Initializable, OwnableUpgradeable, UUPSUpg
 }
 ```
 
+<br>
+
 Lastly, here is script I used to exploit the vault.
 
 ```js
@@ -614,6 +640,8 @@ Lastly, here is script I used to exploit the vault.
         this.attackContract.connect(attacker).sweepFunds(this.token.address)
     });
 ```
+
+<br>
 
 ```toc
 
