@@ -8,7 +8,7 @@ categories: 취약점분석
 ---
 
 # CTF name: Damn Vulnerable DeFi
-### Challenge name: Unstoppable
+## Challenge name: Unstoppable
 ### Challenge description: 
     There's a lending pool with a million DVT tokens in balance, offering flash loans for free.
 
@@ -29,8 +29,8 @@ This line of code in `flashLoan()` function compares `poolBalance` and `balanceB
 
 - - -
 
-# CTF name: Damn Vulnerable DeFi
-### Challenge name: Naive-Receiver
+
+## Challenge name: Naive-Receiver
 ### Challenge description:
     There's a lending pool offering quite expensive flash loans of Ether, which has 1000 ETH in balance.
 
@@ -51,8 +51,8 @@ In this challenge, we need Drain all ETH funds from the user's contract(FlashLoa
 
 - - -
 
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Truster
+
+## Challenge name: Truster
 ### Challenge description:
     More and more lending pools are offering flash loans. In this case, a new pool has launched that is offering flash loans of DVT tokens for free.
 
@@ -83,8 +83,8 @@ Here is how it goes. We first get the balance of DVT token of pool and get paylo
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Side entrance
+
+## Challenge name: Side entrance
 ### Challenge description:
     A surprisingly simple lending pool allows anyone to deposit ETH, and withdraw it at any point in time.
 
@@ -120,8 +120,8 @@ By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flash
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: The rewarder
+
+## Challenge name: The rewarder
 ### Challenge description:
     There's a pool offering rewards in tokens every 5 days for those who deposit their DVT tokens into it.
 
@@ -176,8 +176,8 @@ contract AttackTheRewarder {
 ```
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Selfie
+
+## Challenge name: Selfie
 ### Challenge description:
     A new cool lending pool has launched! It's now offering flash loans of DVT tokens.
 
@@ -231,8 +231,8 @@ First, by calling `attackTheSelfiePool()` function, we can get flash loan, and d
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Compromised
+
+## Challenge name: Compromised
 ### Challenge descrisption:
     While poking around a web service of one of the most popular DeFi projects in the space, you get a somewhat strange response from their server. This is a snippet:
 
@@ -299,8 +299,8 @@ Here is exploit code:
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Puppet
+
+## Challenge name: Puppet
 ### Challenge description:
     There's a huge lending pool borrowing Damn Valuable Tokens (DVTs), where you first need to deposit twice the borrow amount in ETH as collateral. The pool currently has 100000 DVTs in liquidity.
 
@@ -329,8 +329,8 @@ First we need to approve UniswapV1 to utilze our token, and exchange all DVT tok
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Puppet v2
+
+## Challenge name: Puppet v2
 ### Challenge description:
     The developers of the last lending pool are saying that they've learned the lesson. And just released a new version!
 
@@ -359,8 +359,8 @@ In this challenge, we must steal million DVT from the pool. This challenge is ve
 ```
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Free rider 
+
+## Challenge name: Free rider 
 ### Challenge description:
     A new marketplace of Damn Valuable NFTs has been released! There's been an initial mint of 6 NFTs, which are available for sale in the marketplace. Each one at 15 ETH.
 
@@ -435,8 +435,8 @@ In `uniswapV2Call()` function, first withdraw ETH from WETH contract. Secondly, 
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Backdoor 
+
+## Challenge name: Backdoor 
 ### Challenge description:
     To incentivize the creation of more secure wallets in their team, someone has deployed a registry of Gnosis Safe wallets. When someone in the team deploys and registers a wallet, they will earn 10 DVT tokens.
 
@@ -489,8 +489,8 @@ First we need to approve function, that will be delegate called by the proxy con
 
 
 - - -
-## CTF name: Damn Vulnerable DeFi
-### Challenge name: Climber 
+
+## Challenge name: Climber 
 ### Challenge description:
     There's a secure vault contract guarding 10 million DVT tokens. The vault is upgradeable, following the UUPS pattern.
 
