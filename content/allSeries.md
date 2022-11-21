@@ -15,7 +15,6 @@ categories: ~feature~
 Code4rena Audit Report를 읽고 정리하는 Notion입니다! 
 1. Reading Code4rena All Audit Report
 2. Writing down two interesting Auditing finding.
-
 Making mind map for Attack Vectors.
 Try to remember at least two of Attack Vectors.
 - [Code4rena Audit Fundings](https://daniel-audit.notion.site/9e9fde71bb604bc3a6aaf7cee83f9c39?v=a5951f09c2e94e54a0a4193992c63588)

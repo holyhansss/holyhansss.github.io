@@ -6,21 +6,21 @@ module.exports = {
   ogImage: `/og-image.png`, // Path to your in the 'static' folder
   comments: {
     utterances: {
-      repo: ``, // `zoomkoding/zoomkoding-gatsby-blog`,
+      repo: `holyhansss/holyhansss.github.io`, // `zoomkoding/zoomkoding-gatsby-blog`,
     },
   },
   ga: '0', // Google Analytics Tracking ID
   author: {
     name: `한성원`,
     bio: {
-      role: `개발자`,
+      role: ``,
       description: ['새로운 것에 도전하는', '능동적으로 일하는', '배워서 남주는'],
       thumbnail: 'sample.png', // Path to the image in the 'asset' folder
     },
     social: {
-      github: `https://github.com/holyhansss`, // `https://github.com/zoomKoding`,
-      linkedIn: ``, // `https://www.linkedin.com/in/jinhyeok-jeong-800871192`,
-      email: `holyhansss@gmail.com`, // `zoomkoding@gmail.com`,
+      github: `https://github.com/holyhansss`,
+      linkedIn: `https://www.linkedin.com/in/holyhansss/`,
+      email: `holyhansss@gmail.com`,
     },
   },
 
