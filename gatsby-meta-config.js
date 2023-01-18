@@ -51,6 +51,15 @@ module.exports = {
           demo: '',
         },
       },
+      {
+        date: '2022.1~',
+        activity: '수호아이오 Security Researcher',
+        links: {
+          post: '',
+          github: '',
+          demo: '',
+        },
+      },
     ],
 
     projects: [
